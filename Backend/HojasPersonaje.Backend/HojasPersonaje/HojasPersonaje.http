@@ -1,0 +1,6 @@
+@HojasPersonaje_HostAddress = http://localhost:5175
+
+GET {{HojasPersonaje_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
