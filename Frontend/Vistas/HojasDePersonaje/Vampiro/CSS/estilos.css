@@ -1,0 +1,357 @@
+.titulos{
+    font-weight: bold;
+}
+
+#nombre_clan {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.texto-skills {
+    all: unset;
+    display: inline-block;    /* Permite que el borde se ajuste al contenido */
+    border-bottom: 2px solid #000; /* Grosor, Estilo y Color */
+    padding-bottom: 2px;      /* Espacio opcional entre el texto y la línea */
+}
+
+.titulo-skills{
+    width: 100px;              /* Ajusta este valor según el tamaño deseado */
+}
+
+/* Estilo para convertir los checkboxes en círculos */
+    .circle-check {
+        appearance: none; /* Oculta el check cuadrado original */
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #000; /* Borde del círculo */
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+        transition: background 0.2s ease;
+    }
+
+    /* Color cuando el círculo está marcado (lleno) */
+    .circle-check:checked {
+        background-color: #000; /* Puedes usar #800000 para un rojo oscuro tipo vampiro */
+    }
+
+    /* Efecto al pasar el mouse */
+    .circle-check:hover {
+        background-color: #ccc;
+    }
+    
+    .label-width {
+        width: 120px;          /* Ajusta este valor según la palabra más larga */
+        margin-bottom: 0;      /* Evita espacios extraños */
+        margin-left: 0;
+    }
+
+/*Hasta aqui estilos para convertir checkboxes en círculos*/
+
+
+/*
+Desde aquyí el estilo para checkbox cuadrado
+*/
+
+.square-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #000; /* Borde del cuadrado */
+    border-radius: 0%;      /* 0% para esquinas totalmente rectas */
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s ease;
+    background-color: transparent;
+    display: inline-block;
+}
+
+/* Estado cuando está marcado */
+.square-check:checked {
+    background-color: #000; /* Color de relleno al marcar */
+}
+
+/* Opcional: un efecto suave al pasar el mouse */
+.square-check:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+/*
+Hasta aquí el estilos para cheackbox cuadrado
+*/
+
+
+.textarea-lineas {
+    width: 100%;
+    line-height: 30px; /* Esta es la clave: la altura de cada línea */
+    background-image: linear-gradient(to bottom, transparent 29px, #ccc 29px);
+    background-size: 100% 30px; /* El segundo valor debe ser igual al line-height */
+    background-attachment: local; /* Hace que las líneas se muevan con el scroll */
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    resize: none; /* Opcional: evita que el usuario cambie el tamaño y rompa el efecto */
+}
+
+
+.borde-superior {
+  height: 40px;
+  width: 100%;
+  /* Crea un patrón de picos usando gradientes */
+  background: 
+    linear-gradient(45deg, transparent 45%, #000 45%, #000 55%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, #000 45%, #000 55%, transparent 55%);
+  background-size: 20px 40px;
+  background-repeat: repeat-x;
+  position: relative;
+  border-bottom: 3px double black;
+}
+
+/* El remate de la lanza */
+.borde-superior::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: radial-gradient(circle, black 2px, transparent 3px);
+  background-size: 20px 20px;
+}
+
+
+
+
+/* Adorno para el borde IZQUIERDO */
+.contenedor-vampirico::before {
+    content: "";
+
+    top: 0;
+    left: -15px; /* Lo desplazamos hacia afuera del borde */
+    bottom: 0;
+    width: 20px;
+    /* SVG de una espiral/filigrana que se repite */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='100' viewBox='0 0 20 100'%3E%3Cpath d='M18 10 C 5 15, 5 35, 15 40 M18 60 C 5 65, 5 85, 15 90' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: repeat-y;
+}
+
+/* Adorno para el borde DERECHO (espejo) */
+.contenedor-vampirico::after {
+    content: "";
+
+    top: 0;
+    right: -15px;
+    bottom: 0;
+    width: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='100' viewBox='0 0 20 100'%3E%3Cpath d='M2 10 C 15 15, 15 35, 5 40 M2 60 C 15 65, 15 85, 5 90' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: repeat-y;
+}
+
+.reja-superior {
+    position: absolute;
+    top: -40px; 
+    left: -6px; /* Alineado exacto con el grosor del borde izquierdo */
+    width: calc(100% + 12px); /* Cubre el ancho total incluyendo los bordes laterales */
+    height: 45px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='40' viewBox='0 0 24 40'%3E%3Cpath d='M12 0 L15 12 L13 12 L13 35 L24 35 L24 38 L0 38 L0 35 L11 35 L11 12 L9 12 Z' fill='black'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+/* El título que corta la reja (como en la imagen) */
+.titulo-vampiro {
+    background: white;
+    padding: 0 20px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    font-family: 'serif';
+    letter-spacing: 5px;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.header-container {
+    text-align: center;
+    margin-top: -25px; /* Sube el título para que tape parte de la reja */
+}
+
+
+
+/* 2. El contenedor ahora se expande */
+.contenedor-vampirico {
+    width: 96vw;          /* Ocupa el 96% del ancho de la pantalla */
+    min-height: 94vh;     /* Ocupa casi toda la altura de la pantalla */
+    margin: 60px auto 2vh auto; /* Aumentamos el margen superior de 2vh a 60px */
+    
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+    
+    /* Mantenemos tus bordes de estilo Vampire */
+    border-left: 6px double black;
+    border-right: 6px double black;
+    border-bottom: 6px double black;
+    position: relative;
+}
+
+/* 3. Ajuste de la reja para que no se corte en los bordes */
+.reja-superior {
+
+    top: -35px; 
+    left: -6px; 
+    width: calc(100% + 12px); 
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='40' viewBox='0 0 24 40'%3E%3Cpath d='M12 0 L15 12 L13 12 L13 35 L24 35 L24 38 L0 38 L0 35 L11 35 L11 12 L9 12 Z' fill='black'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+
+
+
+.bloque-historia {
+    display: flex;
+    flex-direction: column; /* El título arriba, el texto abajo */
+    margin-top: 20px;
+}
+
+.label-vampirico {
+    font-family: 'serif';
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    /* Para que la primera línea de texto empiece justo después del título */
+    display: inline-block;
+}
+
+.textarea-vampirico {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-family: 'serif';
+    font-size: 16px;
+    
+    /* CONFIGURACIÓN DE LAS LÍNEAS */
+    line-height: 28px; /* Altura de cada línea de texto */
+    background-image: linear-gradient(transparent, transparent 27px, #333 27px);
+    background-size: 100% 28px; /* Debe coincidir exactamente con line-height */
+    
+    background-attachment: local; /* Las líneas se mueven si haces scroll */
+    padding: 0;
+    margin: 0;
+    resize: none; /* Evita que el usuario cambie el tamaño y rompa el diseño */
+}
+
+/* Efecto opcional: resaltar la línea al escribir */
+.textarea-vampirico:focus {
+    background-image: linear-gradient(transparent, transparent 27px, #800000 27px);
+}
+
+
+/*Inicio estilo de lanza titulos*/
+/* Título con lanza */
+.title-lance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 6px; /* ⬅ reduce espacio inferior */
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Texto del título */
+.title-lance .text {
+    padding: 0 20px;
+    white-space: nowrap;
+}
+
+/* Líneas */
+.title-lance .line {
+    flex: 1;
+    height: 2px;
+    background-color: black;
+    position: relative;
+}
+
+/* Punta tipo lanza */
+.title-lance .line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+/* Lanza izquierda */
+.title-lance .line.left::after {
+    left: -10px;
+    border-right: 10px solid black;
+}
+
+/* Lanza derecha */
+.title-lance .line.right::after {
+    right: -10px;
+    border-left: 10px solid black;
+}
+
+/* Bloque del textarea */
+.bloque-historia {
+    margin-top: 4px; /* ⬅ acerca el textarea al título */
+}
+
+/* Textarea */
+.textarea-vampirico {
+    width: 100%;
+    margin-top: 0;
+}
+
+/*Final estilo de lanza titulos*/
+
+
+@media (min-width: 768px) {
+
+    .border-lance-right {
+        position: relative;
+        padding-right: 25px;
+    }
+
+    .border-lance-right::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        bottom: 15px;
+        right: 0;
+        width: 2px;
+        background-color: black;
+    }
+
+    .border-lance-right::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -6px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 12px solid black;
+    }
+
+    .border-lance-right span.lance-bottom {
+        position: absolute;
+        bottom: 0;
+        right: -6px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 12px solid black;
+    }
+}

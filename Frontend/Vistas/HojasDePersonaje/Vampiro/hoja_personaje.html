@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hojita De Personaje</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSS/estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="contenedor-botones row justify-content-between mb-3">
+        <div class="col-auto">
+            <a href="../../index.html" class="btn btn-success mt-3 ms-3 btn-sm"><i class="bi bi-skip-backward"></i> Atrás</a>
+        </div>
+        <div class="col-auto">
+            <a href="Biografia.html" class="btn btn-info mt-3 me-3 btn-sm">Siguiente página <i class="bi bi-skip-forward"></i> </a>    
+        </div>
+    </div>
+
+    <div class="contenedor-vampirico">
+            <div class="reja-superior"></div>
+    <h1 id="nombre_clan" class="mb-3">MALKAVIAN</h1>
+
+    <div class="mb-3">
+        <div class="row mb-3">
+            <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
+                <p class="titulos mb-0 me-2 label-width">Nombre</p>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
+                <p class="titulos mb-0 me-2 label-width">Ambición</p>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-4 d-md-flex align-items-center">
+                <p class="titulos mb-0 me-2 label-width">Generación</p>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
+                <p class="titulos mb-0 me-2 label-width">Concepto</p>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
+                <p class="titulos mb-0 me-2 label-width">Deseo</p>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-4 d-md-flex align-items-center">
+                <p class="titulos mb-0 me-2 label-width">Sire</p>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
+                <p class="titulos mb-0 me-2 label-width">Crónica</p>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
+                <p class="titulos mb-0 me-2 label-width">Depredador</p>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-4 d-md-flex align-items-center">
+                <p class="titulos mb-0 me-2 label-width">Título</p>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h2 class="title-lance">
+                <span class="line left"></span>
+                <span class="text">ATRIBUTOS</span>
+                <span class="line right"></span>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="d-md-flex">
+                <div class="col-md-4">
+                    <p class="text-center titulos">Fisico</p>
+                    <div>
+                        <div class="d-flex align-items-center mb-3 justify-content-center">
+                            <p class="titulos mb-0 me-3 label-width">Fuerza</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="fuerza-1">
+                                <input type="checkbox" class="circle-check" id="fuerza-2">
+                                <input type="checkbox" class="circle-check" id="fuerza-3">
+                                <input type="checkbox" class="circle-check" id="fuerza-4">
+                                <input type="checkbox" class="circle-check" id="fuerza-5">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 justify-content-center">
+                            <p class="titulos mb-0 me-3 label-width">Destreza</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="destreza-1">
+                                <input type="checkbox" class="circle-check" id="destreza-2">
+                                <input type="checkbox" class="circle-check" id="destreza-3">
+                                <input type="checkbox" class="circle-check" id="destreza-4">
+                                <input type="checkbox" class="circle-check" id="destreza-5">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3 justify-content-center">
+                            <p class="titulos mb-0 me-3 label-width">Resistencia</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="resistencia-1">
+                                <input type="checkbox" class="circle-check" id="resistencia-2">
+                                <input type="checkbox" class="circle-check" id="resistencia-3">
+                                <input type="checkbox" class="circle-check" id="resistencia-4">
+                                <input type="checkbox" class="circle-check" id="resistencia-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-center titulos">Social</p>
+                    <div>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <p class="titulos label-width">Carisma</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="carisma-1">
+                                <input type="checkbox" class="circle-check" id="carisma-2">
+                                <input type="checkbox" class="circle-check" id="carisma-3">
+                                <input type="checkbox" class="circle-check" id="carisma-4">
+                                <input type="checkbox" class="circle-check" id="carisma-5">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <p class="titulos label-width">Manipulación</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="manipulación-1">
+                                <input type="checkbox" class="circle-check" id="manipulación-2">
+                                <input type="checkbox" class="circle-check" id="manipulación-3">
+                                <input type="checkbox" class="circle-check" id="manipulación-4">
+                                <input type="checkbox" class="circle-check" id="manipulación-5">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <p class="titulos label-width">Compostura</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="compostura-1">
+                                <input type="checkbox" class="circle-check" id="compostura-2">
+                                <input type="checkbox" class="circle-check" id="compostura-3">
+                                <input type="checkbox" class="circle-check" id="compostura-4">
+                                <input type="checkbox" class="circle-check" id="compostura-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-center titulos">Mental</p>
+                    <div>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <p class="titulos label-width">Inteligencia</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="inteligencia-1">
+                                <input type="checkbox" class="circle-check" id="inteligencia-2">
+                                <input type="checkbox" class="circle-check" id="inteligencia-3">
+                                <input type="checkbox" class="circle-check" id="inteligencia-4">
+                                <input type="checkbox" class="circle-check" id="inteligencia-5">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <p class="titulos label-width">Astucia</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="astucia-1">
+                                <input type="checkbox" class="circle-check" id="astucia-2">
+                                <input type="checkbox" class="circle-check" id="astucia-3">
+                                <input type="checkbox" class="circle-check" id="astucia-4">
+                                <input type="checkbox" class="circle-check" id="astucia-5">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <p class="titulos label-width">Resolución</p>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" class="circle-check" id="resolucion-1">
+                                <input type="checkbox" class="circle-check" id="resolucion-2">
+                                <input type="checkbox" class="circle-check" id="resolucion-3">
+                                <input type="checkbox" class="circle-check" id="resolucion-4">
+                                <input type="checkbox" class="circle-check" id="resolucion-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-5">
+        <div>
+            <h2 class="title-lance mb-3">
+                <span class="line left"></span>
+                <span class="text">HABILIDADES</span>
+                <span class="line right"></span>
+            </h2>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Atletismo</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1 ">
+                        <input type="checkbox" class="circle-check" id="atletismo-1">
+                        <input type="checkbox" class="circle-check" id="atletismo-2">
+                        <input type="checkbox" class="circle-check" id="atletismo-3">
+                        <input type="checkbox" class="circle-check" id="atletismo-4">
+                        <input type="checkbox" class="circle-check" id="atletismo-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Animal Ken</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="animal-ken-1">
+                        <input type="checkbox" class="circle-check" id="animal-ken-2">
+                        <input type="checkbox" class="circle-check" id="animal-ken-3">
+                        <input type="checkbox" class="circle-check" id="animal-ken-4">
+                        <input type="checkbox" class="circle-check" id="animal-ken-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Academicismo</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="academicismo-1">
+                        <input type="checkbox" class="circle-check" id="academicismo-2">
+                        <input type="checkbox" class="circle-check" id="academicismo-3">
+                        <input type="checkbox" class="circle-check" id="academicismo-4">
+                        <input type="checkbox" class="circle-check" id="academicismo-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Pelea</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="pelea-1">
+                        <input type="checkbox" class="circle-check" id="pelea-2">
+                        <input type="checkbox" class="circle-check" id="pelea-3">
+                        <input type="checkbox" class="circle-check" id="pelea-4">
+                        <input type="checkbox" class="circle-check" id="pelea-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Etiqueta</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="etiqueta-1">
+                        <input type="checkbox" class="circle-check" id="etiqueta-2">
+                        <input type="checkbox" class="circle-check" id="etiqueta-3">
+                        <input type="checkbox" class="circle-check" id="etiqueta-4">
+                        <input type="checkbox" class="circle-check" id="etiqueta-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Consciencia</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="consciencia-1">
+                        <input type="checkbox" class="circle-check" id="consciencia-2">
+                        <input type="checkbox" class="circle-check" id="consciencia-3">
+                        <input type="checkbox" class="circle-check" id="consciencia-4">
+                        <input type="checkbox" class="circle-check" id="consciencia-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Artesania</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="artesania-1">
+                        <input type="checkbox" class="circle-check" id="artesania-2">
+                        <input type="checkbox" class="circle-check" id="artesania-3">
+                        <input type="checkbox" class="circle-check" id="artesania-4">
+                        <input type="checkbox" class="circle-check" id="artesania-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Conocimiento</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="conocimiento-1">
+                        <input type="checkbox" class="circle-check" id="conocimiento-2">
+                        <input type="checkbox" class="circle-check" id="conocimiento-3">
+                        <input type="checkbox" class="circle-check" id="conocimiento-4">
+                        <input type="checkbox" class="circle-check" id="conocimiento-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Finanza</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="finanza-1">
+                        <input type="checkbox" class="circle-check" id="finanza-2">
+                        <input type="checkbox" class="circle-check" id="finanza-3">
+                        <input type="checkbox" class="circle-check" id="finanza-4">
+                        <input type="checkbox" class="circle-check" id="finanza-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Conducción</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="conduccion-1">
+                        <input type="checkbox" class="circle-check" id="conduccion-2">
+                        <input type="checkbox" class="circle-check" id="conduccion-3">
+                        <input type="checkbox" class="circle-check" id="conduccion-4">
+                        <input type="checkbox" class="circle-check" id="conduccion-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Intimidación</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="intimidacion-1">
+                        <input type="checkbox" class="circle-check" id="intimidacion-2">
+                        <input type="checkbox" class="circle-check" id="intimidacion-3">
+                        <input type="checkbox" class="circle-check" id="intimidacion-4">
+                        <input type="checkbox" class="circle-check" id="intimidacion-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Investigación</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="investigacion-1">
+                        <input type="checkbox" class="circle-check" id="investigacion-2">
+                        <input type="checkbox" class="circle-check" id="investigacion-3">
+                        <input type="checkbox" class="circle-check" id="investigacion-4">
+                        <input type="checkbox" class="circle-check" id="investigacion-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Armas de fuego</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="armas-fuego-1">
+                        <input type="checkbox" class="circle-check" id="armas-fuego-2">
+                        <input type="checkbox" class="circle-check" id="armas-fuego-3">
+                        <input type="checkbox" class="circle-check" id="armas-fuego-4">
+                        <input type="checkbox" class="circle-check" id="armas-fuego-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Liderazgo</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="liderazgo-1">
+                        <input type="checkbox" class="circle-check" id="liderazgo-2">
+                        <input type="checkbox" class="circle-check" id="liderazgo-3">
+                        <input type="checkbox" class="circle-check" id="liderazgo-4">
+                        <input type="checkbox" class="circle-check" id="liderazgo-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Medición</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="medicion-1">
+                        <input type="checkbox" class="circle-check" id="medicion-2">
+                        <input type="checkbox" class="circle-check" id="medicion-3">
+                        <input type="checkbox" class="circle-check" id="medicion-4">
+                        <input type="checkbox" class="circle-check" id="medicion-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Latrocinio</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="latrocinio-1">
+                        <input type="checkbox" class="circle-check" id="latrocinio-2">
+                        <input type="checkbox" class="circle-check" id="latrocinio-3">
+                        <input type="checkbox" class="circle-check" id="latrocinio-4">
+                        <input type="checkbox" class="circle-check" id="latrocinio-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Actuación</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="actuacion-1">
+                        <input type="checkbox" class="circle-check" id="actuacion-2">
+                        <input type="checkbox" class="circle-check" id="actuacion-3">
+                        <input type="checkbox" class="circle-check" id="actuacion-4">
+                        <input type="checkbox" class="circle-check" id="actuacion-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Ocultismo</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="ocultismo-1">
+                        <input type="checkbox" class="circle-check" id="ocultismo-2">
+                        <input type="checkbox" class="circle-check" id="ocultismo-3">
+                        <input type="checkbox" class="circle-check" id="ocultismo-4">
+                        <input type="checkbox" class="circle-check" id="ocultismo-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Melee</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="melee-1">
+                        <input type="checkbox" class="circle-check" id="melee-2">
+                        <input type="checkbox" class="circle-check" id="melee-3">
+                        <input type="checkbox" class="circle-check" id="melee-4">
+                        <input type="checkbox" class="circle-check" id="melee-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Persuasión</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="persuasion-1">
+                        <input type="checkbox" class="circle-check" id="persuasion-2">
+                        <input type="checkbox" class="circle-check" id="persuasion-3">
+                        <input type="checkbox" class="circle-check" id="persuasion-4">
+                        <input type="checkbox" class="circle-check" id="persuasion-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Politica</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="politica-1">
+                        <input type="checkbox" class="circle-check" id="politica-2">
+                        <input type="checkbox" class="circle-check" id="politica-3">
+                        <input type="checkbox" class="circle-check" id="politica-4">
+                        <input type="checkbox" class="circle-check" id="politica-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Sigilo</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="sigilo-1">
+                        <input type="checkbox" class="circle-check" id="sigilo-2">
+                        <input type="checkbox" class="circle-check" id="sigilo-3">
+                        <input type="checkbox" class="circle-check" id="sigilo-4">
+                        <input type="checkbox" class="circle-check" id="sigilo-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Callejeo</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="callejeo-1">
+                        <input type="checkbox" class="circle-check" id="callejeo-2">
+                        <input type="checkbox" class="circle-check" id="callejeo-3">
+                        <input type="checkbox" class="circle-check" id="callejeo-4">
+                        <input type="checkbox" class="circle-check" id="callejeo-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Ciencia</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="ciencia-1">
+                        <input type="checkbox" class="circle-check" id="ciencia-2">
+                        <input type="checkbox" class="circle-check" id="ciencia-3">
+                        <input type="checkbox" class="circle-check" id="ciencia-4">
+                        <input type="checkbox" class="circle-check" id="ciencia-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Supervivencia</p>
+                    <input class="texto-skills me-2"  type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="supervivencia-1">
+                        <input type="checkbox" class="circle-check" id="supervivencia-2">
+                        <input type="checkbox" class="circle-check" id="supervivencia-3">
+                        <input type="checkbox" class="circle-check" id="supervivencia-4">
+                        <input type="checkbox" class="circle-check" id="supervivencia-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Subterfugio</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;"> 
+                        
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="subterfugio-1">
+                        <input type="checkbox" class="circle-check" id="subterfugio-2">
+                        <input type="checkbox" class="circle-check" id="subterfugio-3">
+                        <input type="checkbox" class="circle-check" id="subterfugio-4">
+                        <input type="checkbox" class="circle-check" id="subterfugio-5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center justify-content-center flex-nowrap">
+                    <p class="mb-0 me-2 titulos titulo-skills">Tecnología</p>
+                    <input class="texto-skills me-2" type="text" style="width: auto;">
+                    <div class="text-nowrap d-flex gap-1">
+                        <input type="checkbox" class="circle-check" id="tecnologia-1">
+                        <input type="checkbox" class="circle-check" id="tecnologia-2">
+                        <input type="checkbox" class="circle-check" id="tecnologia-3">
+                        <input type="checkbox" class="circle-check" id="tecnologia-4">
+                        <input type="checkbox" class="circle-check" id="tecnologia-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h3 class="title-lance mb-4">
+            <span class="line left"></span>
+            <span class="line right"></span>
+        </h3>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <p class="text-center titulos">Chronicle Tenets</p>
+                <textarea class="w-100 textarea-lineas" rows="5"></textarea>
+            </div>
+            <div class="col-md-4">
+                <p class="text-center titulos">Touchstones & Convictions</p>
+                <textarea class="w-100 textarea-lineas" rows="5"></textarea>
+            </div>
+            <div class="col-md-4">
+                <p class="text-center titulos">Clan bane</p>
+                <textarea class="w-100 textarea-lineas" rows="5"></textarea>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-8 mb-3">
+                <h2 class="title-lance">
+                    <span class="line left"></span>
+                    <span class="text">DISCIPLINAS</span>
+                    <span class="line right"></span>
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center">
+                            <select class="form-control me-5">
+                                <option value="" disabled selected>Seleccione la disciplia</option>
+                                <option value="1">Dominación</option>
+                                <option value="2">Obliblión</option>
+                            </select>
+                            <div class="text-nowrap d-flex gap-1 ms-auto">
+                                <input type="checkbox" class="circle-check" id="tecnologia-1">
+                                <input type="checkbox" class="circle-check" id="tecnologia-2">
+                                <input type="checkbox" class="circle-check" id="tecnologia-3">
+                                <input type="checkbox" class="circle-check" id="tecnologia-4">
+                                <input type="checkbox" class="circle-check" id="tecnologia-5">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <select class="form-control me-5">
+                                <option value="" disabled selected>Seleccione la disciplia</option>
+                                <option value="1">Dominación</option>
+                                <option value="2">Obliblión</option>
+                            </select>
+                            <div class="text-nowrap d-flex gap-1 ms-auto">
+                                <input type="checkbox" class="circle-check" id="tecnologia-1">
+                                <input type="checkbox" class="circle-check" id="tecnologia-2">
+                                <input type="checkbox" class="circle-check" id="tecnologia-3">
+                                <input type="checkbox" class="circle-check" id="tecnologia-4">
+                                <input type="checkbox" class="circle-check" id="tecnologia-5">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <select class="form-control me-5">
+                                <option value="" disabled selected>Seleccione la disciplia</option>
+                                <option value="1">Dominación</option>
+                                <option value="2">Obliblión</option>
+                            </select>
+                            <div class="text-nowrap d-flex gap-1 ms-auto">
+                                <input type="checkbox" class="circle-check" id="tecnologia-1">
+                                <input type="checkbox" class="circle-check" id="tecnologia-2">
+                                <input type="checkbox" class="circle-check" id="tecnologia-3">
+                                <input type="checkbox" class="circle-check" id="tecnologia-4">
+                                <input type="checkbox" class="circle-check" id="tecnologia-5">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <select class="form-control me-5">
+                                <option value="" disabled selected>Seleccione la disciplia</option>
+                                <option value="1">Dominación</option>
+                                <option value="2">Obliblión</option>
+                            </select>
+                            <div class="text-nowrap d-flex gap-1 ms-auto">
+                                <input type="checkbox" class="circle-check" id="tecnologia-1">
+                                <input type="checkbox" class="circle-check" id="tecnologia-2">
+                                <input type="checkbox" class="circle-check" id="tecnologia-3">
+                                <input type="checkbox" class="circle-check" id="tecnologia-4">
+                                <input type="checkbox" class="circle-check" id="tecnologia-5">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <select class="form-control me-5">
+                                <option value="" disabled selected>Seleccione la disciplia</option>
+                                <option value="1">Dominación</option>
+                                <option value="2">Obliblión</option>
+                            </select>
+                            <div class="text-nowrap d-flex gap-1 ms-auto">
+                                <input type="checkbox" class="circle-check" id="tecnologia-1">
+                                <input type="checkbox" class="circle-check" id="tecnologia-2">
+                                <input type="checkbox" class="circle-check" id="tecnologia-3">
+                                <input type="checkbox" class="circle-check" id="tecnologia-4">
+                                <input type="checkbox" class="circle-check" id="tecnologia-5">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <select class="form-control me-5">
+                                <option value="" disabled selected>Seleccione la disciplia</option>
+                                <option value="1">Dominación</option>
+                                <option value="2">Obliblión</option>
+                            </select>
+                            <div class="text-nowrap d-flex gap-1 ms-auto">
+                                <input type="checkbox" class="circle-check" id="tecnologia-1">
+                                <input type="checkbox" class="circle-check" id="tecnologia-2">
+                                <input type="checkbox" class="circle-check" id="tecnologia-3">
+                                <input type="checkbox" class="circle-check" id="tecnologia-4">
+                                <input type="checkbox" class="circle-check" id="tecnologia-5">
+                            </div>
+                        </div>
+                        <div>
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                            <input class="d-block texto-skills w-100" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h2 class="title-lance">
+                    <span class="line left"></span>
+                    <span class="line right"></span>
+                </h2>
+                <div class="row mb-1">
+                    
+                    <div>
+                        <p class="titulos" style="text-align: center;">Vida</p>
+                        <div class="gap-4 d-flex justify-content-center">
+                            <div>
+                                <input type="checkbox" class="square-check" id="vida-1">
+                                <input type="checkbox" class="square-check" id="vida-2">
+                                <input type="checkbox" class="square-check" id="vida-3">
+                                <input type="checkbox" class="square-check" id="vida-4">
+                                <input type="checkbox" class="square-check" id="vida-5">
+                            </div>
+                            <div>
+                                <input type="checkbox" class="square-check" id="vida-6">
+                                <input type="checkbox" class="square-check" id="vida-7">
+                                <input type="checkbox" class="square-check" id="vida-8">
+                                <input type="checkbox" class="square-check" id="vida-9">
+                                <input type="checkbox" class="square-check" id="vida-10">
+                            </div>
+                            <div>
+                                <input type="checkbox" class="square-check" id="vida-11">
+                                <input type="checkbox" class="square-check" id="vida-12">
+                                <input type="checkbox" class="square-check" id="vida-13">
+                                <input type="checkbox" class="square-check" id="vida-14">
+                                <input type="checkbox" class="square-check" id="vida-15">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div>
+                        <p class="titulos" style="text-align: center;">Fuerza de voluntad</p>
+                        <div class="gap-4 d-flex justify-content-center">
+                            <div>
+                                <input type="checkbox" class="square-check" id="willpower-1">
+                                <input type="checkbox" class="square-check" id="willpower-2">
+                                <input type="checkbox" class="square-check" id="willpower-3">
+                                <input type="checkbox" class="square-check" id="willpower-4">
+                                <input type="checkbox" class="square-check" id="willpower-5">
+                            </div>
+                            <div>
+                                <input type="checkbox" class="square-check" id="willpower-6">
+                                <input type="checkbox" class="square-check" id="willpower-7">
+                                <input type="checkbox" class="square-check" id="willpower-8">
+                                <input type="checkbox" class="square-check" id="willpower-9">
+                                <input type="checkbox" class="square-check" id="willpower-10">
+                            </div>
+                            <div>
+                                <input type="checkbox" class="square-check" id="willpower-11">
+                                <input type="checkbox" class="square-check" id="willpower-12">
+                                <input type="checkbox" class="square-check" id="willpower-13">
+                                <input type="checkbox" class="square-check" id="willpower-14">
+                                <input type="checkbox" class="square-check" id="willpower-15">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row mb-1">
+                    <div>
+                        <p class="titulos" style="text-align: center;">Humanidad</p>
+                        <div class="gap-4 d-flex justify-content-center">
+                            <div>
+                                <input type="checkbox" class="square-check" id="humanidad-1">
+                                <input type="checkbox" class="square-check" id="humanidad-2">
+                                <input type="checkbox" class="square-check" id="humanidad-3">
+                                <input type="checkbox" class="square-check" id="humanidad-4">
+                                <input type="checkbox" class="square-check" id="humanidad-5">
+                            </div>
+                            <div>
+                                <input type="checkbox" class="square-check" id="humanidad-6">
+                                <input type="checkbox" class="square-check" id="humanidad-7">
+                                <input type="checkbox" class="square-check" id="humanidad-8">
+                                <input type="checkbox" class="square-check" id="humanidad-9">
+                                <input type="checkbox" class="square-check" id="humanidad-10">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div class="row mb-1">
+                    <div>
+                        <p class="titulos" style="text-align: center;">Hambre</p>
+                        <div class="gap-4 d-flex justify-content-center">
+                            <div>
+                                <input type="checkbox" class="square-check" id="hambre-1">
+                                <input type="checkbox" class="square-check" id="hambre-2">
+                                <input type="checkbox" class="square-check" id="hambre-3">
+                                <input type="checkbox" class="square-check" id="hambre-4">
+                                <input type="checkbox" class="square-check" id="hambre-5">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row mb-1">
+                    <div>
+                        <p class="titulos" style="text-align: center;">Potencia de sangre</p>
+                        <div class="gap-4 d-flex justify-content-center">
+                            <div>
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-1">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-2">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-3">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-4">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-5">
+                            </div>
+                            <div>
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-6">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-7">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-8">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-9">
+                                <input type="checkbox" class="circle-check" id="potencia-sangre-10">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row mb-1">
+                    <div class="col-6">
+                        <p>Blood Surget</p>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                    <div class="col-6">
+                        <p>Mend Amount</p>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-6">
+                        <p>Power Bonus</p>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                    <div class="col-6">
+                        <p>Rouse Re-Roll</p>
+                        <input class="texto-skills w-100" type="text">
+                    </div>      
+                </div>
+                <div class="row mb-1">
+                    <div class="col-6">
+                        <p>Feeding Penality</p>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                    <div class="col-6">
+                        <p>Bane Seberity</p>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-6">
+                        <h5 style="text-align: center;">Resonance</h5>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                    <div class="col-6">
+                        <h5 style="text-align: center;">Hunting</h5>
+                        <input class="texto-skills w-100" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
