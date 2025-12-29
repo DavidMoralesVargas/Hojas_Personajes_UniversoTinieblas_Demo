@@ -5,28 +5,16 @@ using HojasPersonaje.Repositorio.Interfaces;
 
 namespace HojasPersonaje.Repositorio.Implementaciones
 {
-    public class BackgroundRepositorio : IBackgroundRepositorio
+    public class BackgroundRepositorio : GenericoRepositorio<Background>, IBackgroundRepositorio
     {
         private readonly IValidator<Background> _validator;
         private readonly ClaseContexto _contexto;
 
-        public BackgroundRepositorio(IValidator<Background> validator, ClaseContexto contexto)
+        public BackgroundRepositorio(IValidator<Background> validator, ClaseContexto contexto) : base(validator, contexto)
         {
             _validator = validator;
             _contexto = contexto;
         }
 
-        public async Task<Background> AgregarBackgroundAsync(Background background)
-        {
-            var validationResult = await _validator.ValidateAsync(background);
-            if (!validationResult.IsValid)
-            {
-                throw new ValidationException(validationResult.Errors);
-            }
-
-            _contexto.Backgrounds.Add(background);
-            await _contexto.SaveChangesAsync();
-            return background;
-        }
     }
 }

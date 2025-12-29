@@ -14,7 +14,7 @@ namespace HojasPersonaje.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Agregar([FromBody] T entidad)
+        public virtual async Task<IActionResult> Agregar([FromBody] T entidad)
         {
             var resultado = await _genericoRepositorio.AgregarAsync(entidad);
             if (resultado.Exitoso)
@@ -25,7 +25,7 @@ namespace HojasPersonaje.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObtenerPorId(int id)
+        public virtual async Task<IActionResult> ObtenerPorId(int id)
         {
             var resultado = await _genericoRepositorio.ObtenerPorIdAsync(id);
             if (resultado.Exitoso)
@@ -36,7 +36,7 @@ namespace HojasPersonaje.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Eliminar(int id)
+        public virtual async Task<IActionResult> Eliminar(int id)
         {
             var resultado = await _genericoRepositorio.EliminarAsync(id);
             if (resultado.Exitoso)
@@ -47,7 +47,7 @@ namespace HojasPersonaje.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Actualizar([FromBody] T entidad)
+        public virtual async Task<IActionResult> Actualizar([FromBody] T entidad)
         {
             var resultado = await _genericoRepositorio.ActualizarAsync(entidad);
             if (resultado.Exitoso)
@@ -58,7 +58,7 @@ namespace HojasPersonaje.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObtenerTodos()
+        public virtual async Task<IActionResult> ObtenerTodos()
         {
             var resultado = await _genericoRepositorio.ObtenerTodosAsync();
             if (resultado.Exitoso)

@@ -49,7 +49,11 @@ namespace HojasPersonaje.Repositorio.Implementaciones
             var validationResult = await _validator.ValidateAsync(entidad);
             if (!validationResult.IsValid)
             {
-                throw new ValidationException(validationResult.Errors);
+                return new ActionResponse<T>
+                {
+                    Exitoso = false,
+                    Mensaje = $"Ha ocurrido un error {validationResult.Errors}"
+                };
             }
             try
             {

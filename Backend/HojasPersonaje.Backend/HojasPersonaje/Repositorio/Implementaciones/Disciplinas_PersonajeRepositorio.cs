@@ -1,0 +1,19 @@
+﻿using FluentValidation;
+using HojasPersonaje.Data;
+using HojasPersonaje.Entidades;
+using HojasPersonaje.Repositorio.Interfaces;
+
+namespace HojasPersonaje.Repositorio.Implementaciones
+{
+    public class Disciplinas_PersonajeRepositorio : GenericoRepositorio<Disciplina_Personaje>, IDisciplinas_PersonajeRepositorio
+    {
+        private readonly IValidator<Disciplina_Personaje> _validator;
+        private readonly ClaseContexto _contexto;
+
+        public Disciplinas_PersonajeRepositorio(IValidator<Disciplina_Personaje> validator, ClaseContexto contexto) : base(validator, contexto)
+        {
+            _contexto = contexto;
+            _validator = validator;
+        }
+    }
+}

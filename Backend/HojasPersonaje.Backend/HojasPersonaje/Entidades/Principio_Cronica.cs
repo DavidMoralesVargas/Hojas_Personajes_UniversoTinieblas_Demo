@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string? Principios_Cronica { get; set; }
         public Cronica? Cronica { get; set; }
+        public int CronicaId { get; set; }
     }
 }

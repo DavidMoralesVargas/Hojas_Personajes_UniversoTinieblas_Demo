@@ -8,10 +8,7 @@ namespace HojasPersonaje.Entidades.ValidacionesDatos
         {
             RuleFor(x => x.Nombre_Usuario)
                 .NotEmpty()
-                .WithMessage("El nombre del usuario es obligatorio");
-            RuleFor(x => x.Tipo_Usuario)
-                .NotEmpty()
-                .WithMessage("El tipo del usuario es obligatorio");
+                .WithMessage("El nombre del usuario es obligatorio");;
         }
     }
 }

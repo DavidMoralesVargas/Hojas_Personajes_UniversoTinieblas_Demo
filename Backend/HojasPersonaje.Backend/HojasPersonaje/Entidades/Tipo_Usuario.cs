@@ -2,7 +2,7 @@
 {
     public enum Tipo_Usuario
     {
-        Dungeon_Master,
-        Jugador
+        Dungeon_Master = 0,
+        Jugador = 1
     }
 }
