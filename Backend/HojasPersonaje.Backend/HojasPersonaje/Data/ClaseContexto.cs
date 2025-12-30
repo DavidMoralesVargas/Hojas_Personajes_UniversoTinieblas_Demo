@@ -1,10 +1,11 @@
 ﻿using HojasPersonaje.Entidades;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.Metrics;
 
 namespace HojasPersonaje.Data
 {
-    public class ClaseContexto : DbContext
+    public class ClaseContexto : IdentityDbContext<Usuario>
     {
         public ClaseContexto(DbContextOptions<ClaseContexto> options) : base(options) {}
 
@@ -34,7 +35,6 @@ namespace HojasPersonaje.Data
         public DbSet<Tipo_Depredador> Tipos_Depredador { get; set; }
         public DbSet<Vampiro> Vampiros { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

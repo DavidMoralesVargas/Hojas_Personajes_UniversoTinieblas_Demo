@@ -1,8 +1,9 @@
-﻿namespace HojasPersonaje.Entidades
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace HojasPersonaje.Entidades
 {
-    public class Usuario
+    public class Usuario : IdentityUser
     {
-        public int Id { get; set; }
         public string? Nombre_Usuario { get; set; }
         public Tipo_Usuario Tipo_Usuario { get; set; }
 

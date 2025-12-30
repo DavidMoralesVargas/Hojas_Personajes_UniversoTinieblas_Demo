@@ -1,8 +1,10 @@
 using FluentValidation;
 using HojasPersonaje.Data;
+using HojasPersonaje.Entidades;
 using HojasPersonaje.Entidades.ValidacionesDatos;
 using HojasPersonaje.Repositorio.Implementaciones;
 using HojasPersonaje.Repositorio.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -46,6 +48,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<WeaponValidator>();
 
 //Inyección de la clase contexto
 builder.Services.AddDbContext<ClaseContexto>(x => x.UseSqlServer("name=DockerConnection"));
+builder.Services.AddTransient<SeedDb>();
 
 
 //Inyecciones de implementaciones e interfaces
@@ -78,11 +81,32 @@ builder.Services.AddScoped<IVampirosRepositorio, VampirosRepositorio>();
 builder.Services.AddScoped<IWeaponsRepositorio, WeaponsRepositorio>();
 
 
-
-
+builder.Services.AddIdentity<Usuario, IdentityRole>(x =>
+{
+    x.User.RequireUniqueEmail = true;
+    x.Password.RequireDigit = false;
+    x.Password.RequiredUniqueChars = 0;
+    x.Password.RequireLowercase = false;
+    x.Password.RequireNonAlphanumeric = false;
+    x.Password.RequireUppercase = false;
+    x.Password.RequiredLength = 6;
+})
+.AddEntityFrameworkStores<ClaseContexto>()
+.AddDefaultTokenProviders();
 
 
 var app = builder.Build();
+
+SeedData(app);
+void SeedData(WebApplication app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopedFactory!.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<SeedDb>();
+        service!.SeedAsync().Wait();
+    }
+}
 
 app.UseCors(x => x
     .AllowAnyMethod()
