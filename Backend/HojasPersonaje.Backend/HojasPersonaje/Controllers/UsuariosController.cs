@@ -62,7 +62,7 @@ namespace HojasPersonaje.Controllers
             issuer: null,
             audience: null,
             claims: claims,
-            expires: expiration,
+            expires: expiration, //Prueba
             signingCredentials: credentials);
 
             return new TokenDTO
