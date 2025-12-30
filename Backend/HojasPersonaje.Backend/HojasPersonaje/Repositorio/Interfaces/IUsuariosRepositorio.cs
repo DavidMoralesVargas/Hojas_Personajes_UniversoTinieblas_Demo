@@ -1,4 +1,5 @@
-﻿using HojasPersonaje.Entidades;
+﻿using HojasPersonaje.DTOs;
+using HojasPersonaje.Entidades;
 using Microsoft.AspNetCore.Identity;
 
 namespace HojasPersonaje.Repositorio.Interfaces
@@ -10,5 +11,7 @@ namespace HojasPersonaje.Repositorio.Interfaces
         Task CheckRoleAsync(string roleName);
         Task AddUserToRoleAsync(Usuario user, string roleName);
         Task<bool> IsUserInRoleAsync(Usuario user, string roleName);
+        Task<SignInResult> LoginAsync(LoginDTO model);
+        Task LogoutAsync();
     }
 }

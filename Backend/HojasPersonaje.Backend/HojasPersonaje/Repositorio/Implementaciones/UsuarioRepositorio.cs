@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using HojasPersonaje.Data;
+using HojasPersonaje.DTOs;
 using HojasPersonaje.Entidades;
 using HojasPersonaje.Repositorio.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -13,13 +14,24 @@ namespace HojasPersonaje.Repositorio.Implementaciones
         private readonly ClaseContexto _contexto;
         private readonly UserManager<Usuario> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<Usuario> _signInManager;
 
-        public UsuarioRepositorio(IValidator<Usuario> validator, ClaseContexto contexto, UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager) : base(validator, contexto)
+        public UsuarioRepositorio(IValidator<Usuario> validator, ClaseContexto contexto, UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager, SignInManager<Usuario> signInManager) : base(validator, contexto)
         {
             _contexto = contexto;
             _validator = validator;
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
+        }
+
+        public async Task<SignInResult> LoginAsync(LoginDTO model)
+        {
+            return await _signInManager.PasswordSignInAsync(model.Email!, model.Password!, false, false);
+        }
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
         }
 
         public async Task<IdentityResult> AddUserAsync(Usuario user, string password)

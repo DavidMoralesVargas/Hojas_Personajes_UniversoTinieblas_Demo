@@ -4,8 +4,12 @@ using HojasPersonaje.Entidades;
 using HojasPersonaje.Entidades.ValidacionesDatos;
 using HojasPersonaje.Repositorio.Implementaciones;
 using HojasPersonaje.Repositorio.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
+using System.Text;
 using System.Text.Json.Serialization;
 
 
@@ -94,6 +98,18 @@ builder.Services.AddIdentity<Usuario, IdentityRole>(x =>
 .AddEntityFrameworkStores<ClaseContexto>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
+{
+    ValidateIssuer = false,
+    ValidateAudience = false,
+    ValidateLifetime = true,
+    ValidateIssuerSigningKey = true,
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)),
+    ClockSkew = TimeSpan.Zero
+});
+
+
 
 var app = builder.Build();
 
@@ -120,6 +136,8 @@ if (app.Environment.IsDevelopment())     //Esto es un condicional para indicar q
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 // Configure the HTTP request pipeline.
 
