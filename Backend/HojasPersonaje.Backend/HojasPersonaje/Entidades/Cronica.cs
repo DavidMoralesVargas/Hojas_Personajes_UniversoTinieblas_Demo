@@ -8,7 +8,7 @@
         public DateTime Fecha_Cronica { get; set; }
 
         public Usuario? Dungeon_Master { get; set; }
-        public int Dungeon_MasterId { get; set; }
+        public string? Dungeon_MasterId { get; set; }
 
         public ICollection<Principio_Cronica>? Principios_Cronica { get; set; }
         public ICollection<Nota_Adicional>? Notas_Adicionales { get; set; }

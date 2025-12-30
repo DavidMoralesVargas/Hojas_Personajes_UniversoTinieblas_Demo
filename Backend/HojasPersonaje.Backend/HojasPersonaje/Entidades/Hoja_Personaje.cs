@@ -18,7 +18,7 @@
         public int CronicaId { get; set; }
 
         public Usuario? Jugador { get; set; }
-        public int JugadorId { get; set; }
+        public string? JugadorId { get; set; }
 
         public Vampiro? Tipo_Vampiro { get; set; }
         public int Tipo_VampiroId { get; set; }

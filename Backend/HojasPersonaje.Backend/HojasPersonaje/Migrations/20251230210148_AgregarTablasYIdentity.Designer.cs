@@ -4,6 +4,7 @@ using HojasPersonaje.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HojasPersonaje.Migrations
 {
     [DbContext(typeof(ClaseContexto))]
-    partial class ClaseContextoModelSnapshot : ModelSnapshot
+    [Migration("20251230210148_AgregarTablasYIdentity")]
+    partial class AgregarTablasYIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,7 +189,10 @@ namespace HojasPersonaje.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Dungeon_MasterId")
+                    b.Property<int>("Dungeon_MasterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Dungeon_MasterId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Fecha_Cronica")
@@ -200,7 +206,7 @@ namespace HojasPersonaje.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Dungeon_MasterId");
+                    b.HasIndex("Dungeon_MasterId1");
 
                     b.ToTable("Cronicas");
                 });
@@ -505,7 +511,10 @@ namespace HojasPersonaje.Migrations
                     b.Property<int>("Generacion")
                         .HasColumnType("int");
 
-                    b.Property<string>("JugadorId")
+                    b.Property<int>("JugadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("JugadorId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Nombre")
@@ -527,7 +536,7 @@ namespace HojasPersonaje.Migrations
 
                     b.HasIndex("CronicaId");
 
-                    b.HasIndex("JugadorId");
+                    b.HasIndex("JugadorId1");
 
                     b.HasIndex("Tipo_DepredadorId");
 
@@ -547,17 +556,23 @@ namespace HojasPersonaje.Migrations
                     b.Property<DateTime>("Fecha_Amigos")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Usuario1Id")
+                    b.Property<int>("Usuario1Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Usuario1Id1")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Usuario2Id")
+                    b.Property<int>("Usuario2Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Usuario2Id1")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Usuario1Id");
+                    b.HasIndex("Usuario1Id1");
 
-                    b.HasIndex("Usuario2Id");
+                    b.HasIndex("Usuario2Id1");
 
                     b.ToTable("Listas_Amigos");
                 });
@@ -597,7 +612,10 @@ namespace HojasPersonaje.Migrations
                     b.Property<int>("CronicaId")
                         .HasColumnType("int");
 
-                    b.Property<string>("JugadorId")
+                    b.Property<int>("JugadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("JugadorId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Nota")
@@ -607,7 +625,7 @@ namespace HojasPersonaje.Migrations
 
                     b.HasIndex("CronicaId");
 
-                    b.HasIndex("JugadorId");
+                    b.HasIndex("JugadorId1");
 
                     b.ToTable("Notas_Adicionales");
                 });
@@ -994,7 +1012,7 @@ namespace HojasPersonaje.Migrations
                 {
                     b.HasOne("HojasPersonaje.Entidades.Usuario", "Dungeon_Master")
                         .WithMany("Cronicas")
-                        .HasForeignKey("Dungeon_MasterId")
+                        .HasForeignKey("Dungeon_MasterId1")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Dungeon_Master");
@@ -1122,7 +1140,7 @@ namespace HojasPersonaje.Migrations
 
                     b.HasOne("HojasPersonaje.Entidades.Usuario", "Jugador")
                         .WithMany("Hojas_Personaje")
-                        .HasForeignKey("JugadorId")
+                        .HasForeignKey("JugadorId1")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("HojasPersonaje.Entidades.Tipo_Depredador", "Tipo_Depredador")
@@ -1150,12 +1168,12 @@ namespace HojasPersonaje.Migrations
                 {
                     b.HasOne("HojasPersonaje.Entidades.Usuario", "Usuario1")
                         .WithMany()
-                        .HasForeignKey("Usuario1Id")
+                        .HasForeignKey("Usuario1Id1")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("HojasPersonaje.Entidades.Usuario", "Usuario2")
                         .WithMany()
-                        .HasForeignKey("Usuario2Id")
+                        .HasForeignKey("Usuario2Id1")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Usuario1");
@@ -1184,7 +1202,7 @@ namespace HojasPersonaje.Migrations
 
                     b.HasOne("HojasPersonaje.Entidades.Usuario", "Jugador")
                         .WithMany("Notas_Adicionales")
-                        .HasForeignKey("JugadorId")
+                        .HasForeignKey("JugadorId1")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Cronica");

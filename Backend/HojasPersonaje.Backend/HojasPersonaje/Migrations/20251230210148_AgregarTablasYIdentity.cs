@@ -6,11 +6,52 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HojasPersonaje.Migrations
 {
     /// <inheritdoc />
-    public partial class PrimeraMigracion : Migration
+    public partial class AgregarTablasYIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Nombre_Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tipo_Usuario = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Disciplinas",
                 columns: table => new
@@ -38,20 +79,6 @@ namespace HojasPersonaje.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre_Usuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Tipo_Usuario = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Vampiros",
                 columns: table => new
                 {
@@ -62,6 +89,164 @@ namespace HojasPersonaje.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vampiros", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cronicas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre_Cronica = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pais_Cronica = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fecha_Cronica = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Dungeon_MasterId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Dungeon_MasterId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cronicas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cronicas_AspNetUsers_Dungeon_MasterId1",
+                        column: x => x.Dungeon_MasterId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Listas_Amigos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Usuario1Id1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Usuario1Id = table.Column<int>(type: "int", nullable: false),
+                    Usuario2Id1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Usuario2Id = table.Column<int>(type: "int", nullable: false),
+                    Fecha_Amigos = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Listas_Amigos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Listas_Amigos_AspNetUsers_Usuario1Id1",
+                        column: x => x.Usuario1Id1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Listas_Amigos_AspNetUsers_Usuario2Id1",
+                        column: x => x.Usuario2Id1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,55 +266,6 @@ namespace HojasPersonaje.Migrations
                         name: "FK_Habilidades_Disciplina_Disciplinas_DisciplinaId",
                         column: x => x.DisciplinaId,
                         principalTable: "Disciplinas",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cronicas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre_Cronica = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pais_Cronica = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Fecha_Cronica = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Dungeon_MasterId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cronicas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cronicas_Usuarios_Dungeon_MasterId",
-                        column: x => x.Dungeon_MasterId,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Listas_Amigos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Usuario1Id = table.Column<int>(type: "int", nullable: false),
-                    Usuario2Id = table.Column<int>(type: "int", nullable: false),
-                    Fecha_Amigos = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Listas_Amigos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Listas_Amigos_Usuarios_Usuario1Id",
-                        column: x => x.Usuario1Id,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Listas_Amigos_Usuarios_Usuario2Id",
-                        column: x => x.Usuario2Id,
-                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -196,12 +332,19 @@ namespace HojasPersonaje.Migrations
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Tipo_DepredadorId = table.Column<int>(type: "int", nullable: false),
                     CronicaId = table.Column<int>(type: "int", nullable: false),
+                    JugadorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     JugadorId = table.Column<int>(type: "int", nullable: false),
                     Tipo_VampiroId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hojas_Personaje", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hojas_Personaje_AspNetUsers_JugadorId1",
+                        column: x => x.JugadorId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Hojas_Personaje_Cronicas_CronicaId",
                         column: x => x.CronicaId,
@@ -212,12 +355,6 @@ namespace HojasPersonaje.Migrations
                         name: "FK_Hojas_Personaje_Tipos_Depredador_Tipo_DepredadorId",
                         column: x => x.Tipo_DepredadorId,
                         principalTable: "Tipos_Depredador",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Hojas_Personaje_Usuarios_JugadorId",
-                        column: x => x.JugadorId,
-                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -235,6 +372,7 @@ namespace HojasPersonaje.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nota = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JugadorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     JugadorId = table.Column<int>(type: "int", nullable: false),
                     CronicaId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -242,15 +380,15 @@ namespace HojasPersonaje.Migrations
                 {
                     table.PrimaryKey("PK_Notas_Adicionales", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Notas_Adicionales_Cronicas_CronicaId",
-                        column: x => x.CronicaId,
-                        principalTable: "Cronicas",
+                        name: "FK_Notas_Adicionales_AspNetUsers_JugadorId1",
+                        column: x => x.JugadorId1,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Notas_Adicionales_Usuarios_JugadorId",
-                        column: x => x.JugadorId,
-                        principalTable: "Usuarios",
+                        name: "FK_Notas_Adicionales_Cronicas_CronicaId",
+                        column: x => x.CronicaId,
+                        principalTable: "Cronicas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -262,7 +400,7 @@ namespace HojasPersonaje.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Principios_Cronica = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CronicaId = table.Column<int>(type: "int", nullable: true)
+                    CronicaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -614,6 +752,45 @@ namespace HojasPersonaje.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Atributos_Hoja_Personaje_Hoja_PersonajeId",
                 table: "Atributos_Hoja_Personaje",
                 column: "Hoja_PersonajeId");
@@ -639,9 +816,9 @@ namespace HojasPersonaje.Migrations
                 column: "Hoja_PersonajeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cronicas_Dungeon_MasterId",
+                name: "IX_Cronicas_Dungeon_MasterId1",
                 table: "Cronicas",
-                column: "Dungeon_MasterId");
+                column: "Dungeon_MasterId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Disciplinas_Personaje_DisciplinaId",
@@ -704,9 +881,9 @@ namespace HojasPersonaje.Migrations
                 column: "CronicaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hojas_Personaje_JugadorId",
+                name: "IX_Hojas_Personaje_JugadorId1",
                 table: "Hojas_Personaje",
-                column: "JugadorId");
+                column: "JugadorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hojas_Personaje_Tipo_DepredadorId",
@@ -719,14 +896,14 @@ namespace HojasPersonaje.Migrations
                 column: "Tipo_VampiroId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Listas_Amigos_Usuario1Id",
+                name: "IX_Listas_Amigos_Usuario1Id1",
                 table: "Listas_Amigos",
-                column: "Usuario1Id");
+                column: "Usuario1Id1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Listas_Amigos_Usuario2Id",
+                name: "IX_Listas_Amigos_Usuario2Id1",
                 table: "Listas_Amigos",
-                column: "Usuario2Id");
+                column: "Usuario2Id1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Meritos_Hoja_PersonajeId",
@@ -739,9 +916,9 @@ namespace HojasPersonaje.Migrations
                 column: "CronicaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notas_Adicionales_JugadorId",
+                name: "IX_Notas_Adicionales_JugadorId1",
                 table: "Notas_Adicionales",
-                column: "JugadorId");
+                column: "JugadorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notas_Principales_Hoja_PersonajeId",
@@ -767,6 +944,21 @@ namespace HojasPersonaje.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
             migrationBuilder.DropTable(
                 name: "Atributos_Hoja_Personaje");
 
@@ -822,6 +1014,9 @@ namespace HojasPersonaje.Migrations
                 name: "Weapons");
 
             migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
                 name: "Habilidades");
 
             migrationBuilder.DropTable(
@@ -843,7 +1038,7 @@ namespace HojasPersonaje.Migrations
                 name: "Vampiros");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "AspNetUsers");
         }
     }
 }
