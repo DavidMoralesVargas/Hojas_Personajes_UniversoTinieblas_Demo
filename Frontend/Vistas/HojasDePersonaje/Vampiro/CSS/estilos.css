@@ -355,3 +355,21 @@ Hasta aquí el estilos para cheackbox cuadrado
         border-top: 12px solid black;
     }
 }
+
+
+
+/*Diseño de imagenes de titulo de hoja de personake*/
+.logo-vampiro {
+    display: block;
+    margin: 0 auto;          /* centra horizontal */
+    max-width: 180px;        /* tamaño en desktop */
+    width: 100%;
+    height: auto;            /* mantiene proporción */
+}
+
+/* Responsive para celulares */
+@media (max-width: 576px) {
+    .logo-vampiro {
+        max-width: 120px;
+    }
+}

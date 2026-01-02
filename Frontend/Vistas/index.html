@@ -3,11 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página de inicio</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="./CSS/EstilosInicio.css">
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <a href="HojasDePersonaje/Vampiro/hoja_personaje.html">Hoja de personaje</a>
-    <script src="app.js"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="./index.html">
+        <img src="../Images/LogoVampiro.png" alt="Logo" class="logo-img">
+    </a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <!--Dropwdown para ver tipos de vampiros-->
+                <div class="dropdown">
+                    <button class="btn btn-link dropdown-toggle text-decoration-none text-dark px-0"
+                            type="button"
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Ver hojas de personaje
+                    </button>
+
+                    <ul class="dropdown-menu select2" aria-labelledby="dropdownMenuButton1" id="seleccion_clanes">
+                        <li><input class="form-control input_clanes" placeholder="Buscar..." ></li>
+                    </ul>
+                </div>
+                
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1">Disabled</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="cuerpo_pagina">
+
+    <div class="container d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 80px;">
+        <div class="bg-white p-4 rounded shadow" style="width: 100%; max-width: 400px;">
+            <form>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center mb-4">Ingresar</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Nombre de usuario</label>
+                            <input type="text" class="form-control" placeholder="Ingrese nombre de usuario">
+                            <small class="form-text text-muted">
+                                We'll never share your email with anyone else.
+                            </small>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label>Contraseña</label>
+                            <input type="password" class="form-control" placeholder="Ingrese Contraseña">
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary w-100 mt-4">
+                            Enviar
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-center mt-3">
+                        ¿No tienes una cuenta?
+                        <a href="#">Regístrate aquí</a>
+                    </p>
+                </div>
+                
+            </form>
+
+        </div>
+    </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../ArchivosJS/inicio.js"></script>
 </body>
 </html>

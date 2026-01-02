@@ -1,0 +1,93 @@
+
+/* Contenedor principal del logo */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    /* Esto separa el logo del borde izquierdo de la ventana */
+    margin-left: 20px; 
+}
+
+/* La imagen del logo */
+.logo-img {
+    /* Tamaño equilibrado (ajustado a tu petición de "más grande") */
+    height: 50px; 
+    width: auto;
+    
+    /* Espacio a la derecha para no chocar con el texto del menú */
+    margin-right: 20px; 
+    
+    /* Asegura que la imagen no se deforme */
+    object-fit: contain;
+    
+    /* Efecto de suavizado */
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.logo-img:hover {
+    transform: scale(1.1);
+}
+
+/* --- AJUSTES PARA CELULARES --- */
+@media (max-width: 768px) {
+    .navbar-brand {
+        /* Un poco menos de margen en móviles para aprovechar el ancho */
+        margin-left: 10px; 
+    }
+
+    .logo-img {
+        /* Tamaño un poco más compacto en móviles */
+        height: 40px; 
+        margin-right: 10px;
+    }
+}
+
+
+/* Contenedor */
+.select2-container--default .select2-selection--single {
+    border: none;
+    background: transparent;
+    padding: 0;
+    height: auto;
+}
+
+/* Texto renderizado */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #212529; /* color navbar claro */
+    padding: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Flecha */
+.select2-container--default .select2-selection__arrow {
+    display: none;
+}
+
+/* Hover tipo link */
+.select2-container--default .select2-selection--single:hover
+.select2-selection__rendered {
+    text-decoration: underline;
+}
+
+/*Fondo de pantalla principal*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.cuerpo_pagina {
+    background-image: url("../../Images/FondoPrincipal.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    min-height: 100vh;
+    width: 100%;
+
+    padding-top: 80px; /* espacio para el navbar */
+}
+
+/*Hasta aqui los estilos para imagen de fondo en pantalla principal*/
