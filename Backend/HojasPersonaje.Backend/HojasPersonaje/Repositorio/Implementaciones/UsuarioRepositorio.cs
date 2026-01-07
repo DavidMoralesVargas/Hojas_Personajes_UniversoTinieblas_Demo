@@ -62,9 +62,15 @@ namespace HojasPersonaje.Repositorio.Implementaciones
             return user!;
         }
 
-        public async Task<bool> IsUserInRoleAsync(Usuario user, string roleName)
+        public async Task<bool> IsUserInRoleAsync(string user, string roleName)
         {
-            return await _userManager.IsInRoleAsync(user, roleName);
+            var userFind = await GetUserAsync(user);
+            if (userFind == null)
+            {
+                return false;
+            }
+
+            return await _userManager.IsInRoleAsync(userFind, roleName);
         }
     }
 }

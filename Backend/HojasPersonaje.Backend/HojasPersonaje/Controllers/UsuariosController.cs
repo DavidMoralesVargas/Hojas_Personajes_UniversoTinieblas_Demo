@@ -25,6 +25,8 @@ namespace HojasPersonaje.Controllers
         public async Task<IActionResult> RegistrarUsuario([FromBody] UsuarioDTO usuario)
         {
             Usuario modelo = usuario;
+            modelo.UserName = $"{modelo.Nombre_Usuario!.ToLower()}@yopmail.com";
+            modelo.Email = $"{modelo.Nombre_Usuario!.ToLower()}@yopmail.com";
             var resultado = await _usuarios.AddUserAsync(modelo, usuario.Contraseña!);
             if (resultado.Succeeded)
             {
@@ -37,6 +39,7 @@ namespace HojasPersonaje.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginDTO modelo)
         {
+            modelo.Email = $"{modelo.Email!.ToLower()}@yopmail.com";
             var resultado = await _usuarios.LoginAsync(modelo);
             if (resultado.Succeeded)
             {

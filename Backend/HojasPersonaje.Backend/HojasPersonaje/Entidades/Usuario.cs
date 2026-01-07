@@ -6,6 +6,8 @@ namespace HojasPersonaje.Entidades
     {
         public string? Nombre_Usuario { get; set; }
         public Tipo_Usuario Tipo_Usuario { get; set; }
+        public bool Activo { get; set; }
+        public string? Foto { get; set; }
 
 
         public ICollection<Cronica>? Cronicas { get; set; }

@@ -10,7 +10,7 @@ namespace HojasPersonaje.Repositorio.Interfaces
         Task<IdentityResult> AddUserAsync(Usuario user, string password);
         Task CheckRoleAsync(string roleName);
         Task AddUserToRoleAsync(Usuario user, string roleName);
-        Task<bool> IsUserInRoleAsync(Usuario user, string roleName);
+        Task<bool> IsUserInRoleAsync(string user, string roleName);
         Task<SignInResult> LoginAsync(LoginDTO model);
         Task LogoutAsync();
     }
