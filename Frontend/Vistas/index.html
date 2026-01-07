@@ -10,57 +10,112 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="./index.html">
-        <img src="../Images/LogoVampiro.png" alt="Logo" class="logo-img">
-    </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">
+            <img src="../Images/LogoVampiro.png" alt="Logo" class="logo-img">
+        </a>
 
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <!--Dropwdown para ver tipos de vampiros-->
-                <div class="dropdown">
-                    <button class="btn btn-link dropdown-toggle text-decoration-none text-dark px-0"
-                            type="button"
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Ver hojas de personaje
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item me-lg-3">
+                    <!--Dropwdown para ver tipos de vampiros-->
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle text-decoration-none text-dark px-0"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Ver hojas de personaje
+                        </button>
+
+                        <ul class="dropdown-menu select2" aria-labelledby="dropdownMenuButton1" id="seleccion_clanes">
+                            <li><input class="form-control input_clanes" placeholder="Buscar..." ></li>
+                        </ul>
+                    </div>
+                    
+                </li>
+                <li class="nav-item lista-administracion me-lg-3" hidden>
+                    <!--Dropwdown para opciones de administración-->
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle text-decoration-none text-dark px-0"
+                                type="button"
+                                id="dropdownAdministracion"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Administración
+                        </button>
+
+                        <ul class="dropdown-menu select2" aria-labelledby="dropdownMenuButton1" id="seleccion_clanes">
+                            <li><a class="dropdown-item" href="/Frontend/Vistas/Vampiros/VampiroIndex.html">Vampiros</a></li>
+                            <li><a class="dropdown-item" href="/Frontend/Vistas/Usuarios/UsuarioIndex.html">Usuarios</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item ms-lg-auto me-3 align-content-center" hidden id="elemento-cerrar-sesion">
+                    <button type="button" 
+                            id="cerrar-sesion"
+                            class="btn btn-link nav-link border-0 bg-transparent p-0">
+                        Cerrar sesión
                     </button>
-
-                    <ul class="dropdown-menu select2" aria-labelledby="dropdownMenuButton1" id="seleccion_clanes">
-                        <li><input class="form-control input_clanes" placeholder="Buscar..." ></li>
-                    </ul>
-                </div>
-                
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1">Disabled</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 <div class="cuerpo_pagina">
 
-    <div class="container d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 80px;">
+    <!-- Modal para formulario de registro de usuario -->
+    <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formulario_registro">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Registro de jugador:</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Nombre de usuario:</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña:</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme su contraseña">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container d-flex justify-content-center align-items-start" style="min-height: 100vh; padding-top: 80px;" id="login">
         <div class="bg-white p-4 rounded shadow" style="width: 100%; max-width: 400px;">
-            <form>
+            <form id="formulario_login">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center mb-4">Ingresar</h2>
@@ -68,15 +123,12 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Nombre de usuario</label>
-                            <input type="text" class="form-control" placeholder="Ingrese nombre de usuario">
-                            <small class="form-text text-muted">
-                                We'll never share your email with anyone else.
-                            </small>
+                            <input type="text" class="form-control" id="nombre_usuario" placeholder="Ingrese nombre de usuario">
                         </div>
 
                         <div class="form-group mt-3">
                             <label>Contraseña</label>
-                            <input type="password" class="form-control" placeholder="Ingrese Contraseña">
+                            <input type="password" class="form-control" id="contraseña" placeholder="Ingrese Contraseña">
                         </div>
 
                     </div>
@@ -89,7 +141,7 @@
                 <div>
                     <p class="text-center mt-3">
                         ¿No tienes una cuenta?
-                        <a href="#">Regístrate aquí</a>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-link text-decoration-none p-0" id="registro">Regístrate aquí</button>
                     </p>
                 </div>
                 
@@ -102,6 +154,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="../ArchivosJS/inicio.js"></script>
+    <script type="module" src="../ArchivosJS/Cuentas.js"></script>
+    <script type="module" src="../ArchivosJS/Vampiro.js"></script>
+    <script type="module" src="../ArchivosJS/inicio.js"></script>
 </body>
 </html>

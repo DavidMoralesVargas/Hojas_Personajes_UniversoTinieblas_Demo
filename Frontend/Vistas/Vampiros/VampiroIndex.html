@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/EstilosInicio.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <a class="navbar-brand" href="/Frontend/Vistas/index.html">
+            <img src="../../Images/LogoVampiro.png" alt="Logo" class="logo-img">
+        </a>
+
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav w-100">
+                <li class="nav-item me-lg-3">
+                    <!--Dropwdown para ver tipos de vampiros-->
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle text-decoration-none text-dark px-0"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Ver hojas de personaje
+                        </button>
+
+                        <ul class="dropdown-menu select2" aria-labelledby="dropdownMenuButton1" id="seleccion_clanes">
+                            <li><input class="form-control input_clanes" placeholder="Buscar..." ></li>
+                        </ul>
+                    </div>
+                    
+                </li>
+                <li class="nav-item lista-administracion me-lg-3" hidden>
+                    <!--Dropwdown para opciones de administración-->
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle text-decoration-none text-dark px-0"
+                                type="button"
+                                id="dropdownAdministracion"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Administración
+                        </button>
+
+                        <ul class="dropdown-menu select2" aria-labelledby="dropdownMenuButton1" id="seleccion_clanes">
+                            <li><a class="dropdown-item" href="/Frontend/Vistas/Vampiros/VampiroIndex.html">Vampiros</a></li>
+                            <li><a class="dropdown-item" href="/Frontend/Vistas/Usuarios/UsuarioIndex.html">Usuarios</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item ms-lg-auto me-3 align-content-center" hidden id="elemento-cerrar-sesion">
+                    <button type="button" 
+                            id="cerrar-sesion"
+                            class="btn btn-link nav-link border-0 bg-transparent p-0">
+                        Cerrar sesión
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h1>Vampiros</h1>
+            <a href="./VampiroCrear.html" class="btn btn-primary"><i class="bi bi-plus-square"></i> Crear vampiro</a>
+        </div>
+        <div class="card-body">
+            <div class="contenedor_de_vampiros">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre vampiro</th>
+                            <th>Clan bane</th>
+                            <th>Disciplinas de clan</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body_vampiros">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script type="module" src="../../ArchivosJS/interfacesEntidades.js"></script>
+    <script type="module" src="../../ArchivosJS/Cuentas.js"></script>
+    <script type="module" src="../../ArchivosJS/Vampiro.js"></script>
+    <script type="module" src="../../ArchivosJS/Vampiros/vampiroIndex.js"></script>
+</body>
+</html>

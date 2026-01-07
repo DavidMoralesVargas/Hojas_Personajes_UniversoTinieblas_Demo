@@ -20,6 +20,9 @@ async function verificarVampiroMuestra(tipoVampiro: string) : Promise<boolean | 
     try {
         const respuesta = await $.ajax({
             url: `https://localhost:7118/api/Vampiros/verificarExistencia/${encodeURIComponent(tipoVampiro)}`,
+            headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
             method: "GET",
             dataType: "json"
         });

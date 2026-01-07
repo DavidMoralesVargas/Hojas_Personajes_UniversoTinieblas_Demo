@@ -91,3 +91,12 @@ html, body {
 }
 
 /*Hasta aqui los estilos para imagen de fondo en pantalla principal*/
+
+
+.login-hidden {
+    visibility: hidden;
+}
+
+.login-show {
+    visibility: visible;
+}
