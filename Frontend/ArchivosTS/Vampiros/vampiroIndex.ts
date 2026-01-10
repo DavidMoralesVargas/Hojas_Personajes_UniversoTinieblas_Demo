@@ -77,7 +77,6 @@ async function mostrarVampiros() : Promise<void>{
 }
 
 $("#body_vampiros").on("click", ".btn-eliminar", async function(){
-    console.log("Se ejecuta")
     let id : number = $(this).data("id");
 
     const respuesta = await Swal.fire({

@@ -72,7 +72,6 @@ function mostrarVampiros() {
 }
 $("#body_vampiros").on("click", ".btn-eliminar", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("Se ejecuta");
         let id = $(this).data("id");
         const respuesta = yield Swal.fire({
             icon: "warning", // Cambiado a warning porque es una acción de eliminar

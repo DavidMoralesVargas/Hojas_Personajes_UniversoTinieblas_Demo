@@ -12,7 +12,7 @@ let parametro = new URLSearchParams(window.location.search);
 let tipoVampiro = parametro.get("tipo");
 $(document).ready(function () {
     return __awaiter(this, void 0, void 0, function* () {
-        $("#pagina_siguiente").prop("href", `/Frontend/Vistas/HojasDePersonaje/Vampiro/biografiaM.html?tipo=${tipoVampiro}`);
+        $("#regresar_pagina").prop("href", `/Frontend/Vistas/HojasDePersonaje/Vampiro/HojasPersonaje.html?tipo=${tipoVampiro}`);
         if (tipoVampiro !== null) {
             let existe = yield verificarVampiroMuestra(tipoVampiro);
             if (existe != null && existe != false) {

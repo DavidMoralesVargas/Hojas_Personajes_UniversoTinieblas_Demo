@@ -24,4 +24,14 @@ export interface disciplina_Vampiro{
 export interface Disciplina{
     id : number,
     nombre_Disciplina: string;
+    habilidades_Disciplina : Habilidades_Disciplina[]
+}
+
+export interface Habilidades_Disciplina{
+    id? : number,
+    nombre_Habilidad : string,
+    nivel : number,
+    tirada : string,
+    enardecimiento : boolean,
+    tiradaEnfrentada : string
 }

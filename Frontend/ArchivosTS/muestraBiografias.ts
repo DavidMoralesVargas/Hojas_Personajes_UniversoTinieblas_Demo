@@ -5,7 +5,7 @@ let tipoVampiro : string | null = parametro.get("tipo");
 
 $(document).ready(async function () {
 
-    $("#pagina_siguiente").prop("href", `/Frontend/Vistas/HojasDePersonaje/Vampiro/biografiaM.html?tipo=${tipoVampiro}`);
+    $("#regresar_pagina").prop("href", `/Frontend/Vistas/HojasDePersonaje/Vampiro/HojasPersonaje.html?tipo=${tipoVampiro}`);
 
     if(tipoVampiro !== null){
         let existe : boolean | null = await verificarVampiroMuestra(tipoVampiro);

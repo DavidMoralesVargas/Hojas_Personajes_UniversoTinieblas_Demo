@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Vampiro</title>
+    <title>Crear Disciplina</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="/Frontend/Vistas/index.html">
             <img src="../../Images/LogoVampiro.png" alt="Logo" class="logo-img">
         </a>
 
@@ -73,63 +73,92 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav>     
+
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h1>Actualizar Vampiro</h1>
-            <a href="./VampiroIndex.html" class="btn btn-info"><i class="bi bi-skip-backward"></i> Atrás</a>
+            <h1>Crear Disciplina</h1>
+            <a href="./DisciplinasIndex.html" class="btn btn-info"><i class="bi bi-skip-backward"></i> Atrás</a>
         </div>
         <div class="card-body">
-            <form>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div>
-                            <label for="nombre_vampiro">Nombre del clan:</label>
-                            <input type="text" class="form-control" id="nombre_vampiro" name="nombre_vampiro">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <label for="nombre_disciplina">Nombre Disciplina:</label>
+                    <input class="form-control" id="nombre_disciplina" name="nombre_disciplina" type="text" >
+                </div>
+            </div>
+            <div class="row justify-content-end mb-2">
+                <div class="col-2 text-end">
+                    <button type="button" id="añadir" class="btn btn-info">+</button>
+                </div>
+            </div>
+            <div class="contenedor_habilidades mb-3">
+                <div class="elemento_copias mb-3">
+                    <div class="row mb-2">
+                        <div class="col-10">
+                            <label>Nombre Habilidad:</label>
+                            <input class="form-control nombre-habilidad">
+                        </div>
+                        <div class="col-2">
+                            <label>Nivel</label>
+                            <input class="form-control nivel-habilidad" type="number">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-12 col-md-8">
+                            <label class="form-label">Dados a tirar:</label>
+                            <input class="form-control dados-habilidades">
+                        </div>
+
+                        <div class="col-12 col-md-4 d-flex flex-column flex-md-row justify-content-center align-items-center text-center">
+                            <label class="form-label me-md-3 mb-2 mb-md-0">¿Enardecimiento?</label>
+
+                            <div class="form-check me-md-3">
+                                <input class="form-check-input enardecimiento" type="radio" value="true" name="enardecimiento_0">
+                                <label class="form-check-label">Sí</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input enardecimiento" type="radio" value="false" name="enardecimiento_0">
+                                <label class="form-check-label">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 enfrentado">
+                        <div class="col-2">
+                            <label>Tirada enfrentada?</label>
+                            <div class="form-check me-md-3">
+                                <input class="form-check-input tirada_enfrentada" type="radio" value="true" name="tirada_enfrentada">
+                                <label class="form-check-label">Sí</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input tirada_enfrentada" type="radio" value="false" name="tirada_enfrentada" checked>
+                                <label class="form-check-label">No</label>
+                            </div>
+                        </div>
+                        <div class="col-10 input_enfrentado" hidden>
+                            <label for="tirada_enfrentada">Tirada enfrentada:</label>
+                            <input name="tirada_enfrentada" class="form-control tirada_enfrentada_dato" type="text">
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <div>
-                            <label for="compulsion_vampiro">Compulsión de clan:</label>
-                            <textarea class="form-control" id="compulsion_vampiro" name="compulsion_vampiro" 
-                                    style="resize: none; height: 120px;"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div>
-                            <label for="bane_vampiro">Clan Bane:</label>
-                            <textarea class="form-control" id="bane_vampiro" name="bane_vampiro" 
-                                    style="resize: none; height: 120px;"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <ul class="list-group noSeleccionados border rounded p-1" style="min-height: 100px; height: 300px; overflow-y: scroll;">
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <ul class="list-group Seleccionados border rounded p-1" style="min-height: 100px; height: 300px; overflow-y: scroll;">
-                        </ul>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
         <div class="card-footer">
-            <button class="btn btn-primary" id="guardar"><i class="bi bi-folder-check"></i> Guardar Cambios</button>
+            <button class="btn btn-primary" type="button" id="crear">Crear Disciplina</button>
         </div>
     </div>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script type="module" src="../../ArchivosJS/interfacesEntidades.js"></script>
     <script type="module" src="../../ArchivosJS/Cuentas.js"></script>
     <script type="module" src="../../ArchivosJS/Vampiro.js"></script>
-    <script type="module" src="../../ArchivosJS/Vampiros/VampiroEditar.js"></script>
+    <script type="module" src="../../ArchivosJS/Disciplinas/disciplinasCrear.js"></script>
 </body>
 </html>
