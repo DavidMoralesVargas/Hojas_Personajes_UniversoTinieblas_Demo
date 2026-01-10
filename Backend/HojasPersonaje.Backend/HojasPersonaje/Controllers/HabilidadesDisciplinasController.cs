@@ -1,6 +1,4 @@
-﻿using HojasPersonaje.DTOs;
-using HojasPersonaje.Entidades;
-using HojasPersonaje.Repositorio.Implementaciones;
+﻿using HojasPersonaje.Entidades;
 using HojasPersonaje.Repositorio.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -10,21 +8,21 @@ using System.Security.Claims;
 namespace HojasPersonaje.Controllers
 {
     [ApiController]
-    [Route("/api/[controller]")]
+    [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    public class DisciplinasController : GenericoController<Disciplina>
+    public class HabilidadesDisciplinasController : GenericoController<Habilidades_Disciplina>
     {
-        private readonly IDisciplinasRepositorio _disciplinasRepositorio;
         private readonly IUsuariosRepositorio _usuarioRepositorio;
+        private readonly IHabilidades_DisciplinasRepositorio _disciplinasRepositorio;
 
-        public DisciplinasController(IGenericoRepositorio<Disciplina> genericoRepositorio, IDisciplinasRepositorio disciplinas, IUsuariosRepositorio usuariosRepositorio) : base(genericoRepositorio)
+        public HabilidadesDisciplinasController(IGenericoRepositorio<Habilidades_Disciplina> genericoRepositorio, IUsuariosRepositorio usuariosRepositorio, IHabilidades_DisciplinasRepositorio disciplinasRepositorio) : base(genericoRepositorio)
         {
-            _disciplinasRepositorio = disciplinas;
             _usuarioRepositorio = usuariosRepositorio;
+            _disciplinasRepositorio = disciplinasRepositorio;
         }
 
-        [HttpPost("all")]
-        public async Task<IActionResult> Agregar([FromBody] DisciplinaDTO entidad)
+        [HttpGet("{id}")]
+        public override async Task<IActionResult> ObtenerPorId(int id)
         {
             var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
             if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
@@ -32,7 +30,58 @@ namespace HojasPersonaje.Controllers
                 return Forbid();
             }
 
+            var resultado = await _disciplinasRepositorio.ObtenerPorIdAsync(id);
+            if (resultado.Exitoso)
+            {
+                return Ok(resultado.Resultado);
+            }
+            return BadRequest(resultado.Mensaje);
+        }
+
+        [HttpPut]
+        public override async Task<IActionResult> Actualizar([FromBody] Habilidades_Disciplina entidad)
+        {
+            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+            if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
+            {
+                return Forbid();
+            }
+
+            var resultado = await _disciplinasRepositorio.ActualizarAsync(entidad);
+            if (resultado.Exitoso)
+            {
+                return Ok(resultado.Resultado);
+            }
+            return BadRequest(resultado.Mensaje);
+        }
+
+
+        [HttpPost]
+        public override async Task<IActionResult> Agregar([FromBody] Habilidades_Disciplina entidad)
+        {
+            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+            if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
+            {
+                return Forbid();
+            }
             var resultado = await _disciplinasRepositorio.AgregarAsync(entidad);
+            if (resultado.Exitoso)
+            {
+                return Ok(resultado.Resultado);
+            }
+            return BadRequest(resultado.Mensaje);
+        }
+
+        [HttpGet("disciplina/{id}")]
+        public async Task<IActionResult> ObtenerPorDisciplina(int id)
+        {
+            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+            if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
+            {
+                return Forbid();
+            }
+
+            var resultado = await _disciplinasRepositorio.ObtenerTodosPorIdAsync(id);
             if (resultado.Exitoso)
             {
                 return Ok(resultado.Resultado);
@@ -56,40 +105,5 @@ namespace HojasPersonaje.Controllers
             }
             return BadRequest(resultado.Mensaje);
         }
-
-        [HttpPut]
-        public override async Task<IActionResult> Actualizar([FromBody] Disciplina entidad)
-        {
-            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
-            if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
-            {
-                return Forbid();
-            }
-
-            var resultado = await _disciplinasRepositorio.ActualizarAsync(entidad);
-            if (resultado.Exitoso)
-            {
-                return Ok(resultado.Resultado);
-            }
-            return BadRequest(resultado.Mensaje);
-        }
-
-        [HttpGet]
-        public override async Task<IActionResult> ObtenerTodos()
-        {
-            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
-            if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
-            {
-                return Forbid();
-            }
-
-            var resultado = await _disciplinasRepositorio.ObtenerTodosAsync();
-            if (resultado.Exitoso)
-            {
-                return Ok(resultado.Resultado);
-            }
-            return BadRequest(resultado.Mensaje);
-        }
-
     }
 }
