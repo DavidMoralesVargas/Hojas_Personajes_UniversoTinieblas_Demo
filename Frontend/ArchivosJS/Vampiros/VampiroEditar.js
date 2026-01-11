@@ -37,7 +37,7 @@ function mostrarDisciplinas() {
                 },
                 dataType: "json"
             });
-            noSeleccionado = registros.resultado.filter((itemA) => {
+            noSeleccionado = registros.filter((itemA) => {
                 return !Seleccionado.some((item) => item.id === itemA.id);
             });
             crearNoSeleccionados(noSeleccionado);

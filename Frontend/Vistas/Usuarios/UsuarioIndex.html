@@ -76,9 +76,88 @@
     </nav>
 
 
-    <h1>Usuarios</h1>
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h1 id="titulo">Usuarios</h1>
+            <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-crear">
+                <i class="bi bi-plus-square"></i> 
+                Crear Usuario
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="btn-group mb-3" role="group">
+                <input type="radio" class="btn-check" name="estado" id="activos" checked>
+                <label class="btn btn-outline-success" for="activos">
+                    Activos
+                </label>
 
-        
+                <input type="radio" class="btn-check" name="estado" id="inactivos">
+                <label class="btn btn-outline-danger" for="inactivos">
+                    Inactivos
+                </label>
+            </div>
+            <div class="table-responsive" style="overflow-x: auto; width: 100%;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre de Usuario</th>
+                            <th>Tipo de Usuario</th>
+                            <th>Foto</th>
+                            <th>Cronicas</th>
+                            <th>Hojas de personaje</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo_tabla">
+                        <!-- filas -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Crear nuevo usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nombre de usuario:</label>
+                        <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme su contraseña">
+                    </div>
+                    <div class="mb-3">
+                        <label>Tipo de Usuario:</label>
+                        <select class="form-control" id="tipo_usuario">
+                            <option value="" selected>-- Seleccionar tipo de usuario --</option>
+                            <option value="dungeon_master">Dungeon Master</option>
+                            <option value="jugador">Jugador</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i> Cerrar</button>
+                <button type="button" class="btn btn-primary" id="crear_vampiro"><i class="bi bi-file-check"></i> Guardar Usuario</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

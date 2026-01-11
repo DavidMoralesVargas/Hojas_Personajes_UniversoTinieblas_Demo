@@ -46,12 +46,10 @@ async function mostrarDisciplinas(){
             },
             dataType: "json"
         });
-
-        noSeleccionado = registros.resultado;
+        noSeleccionado = registros;
 
         crearNoSeleccionados(noSeleccionado);
 
-        console.log(noSeleccionado)
     }catch(error){
 
     }

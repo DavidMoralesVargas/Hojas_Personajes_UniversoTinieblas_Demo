@@ -35,3 +35,42 @@ export interface Habilidades_Disciplina{
     enardecimiento : boolean,
     tiradaEnfrentada : string
 }
+
+export interface Usuario{
+    id? : string,
+    nombre_Usuario : string,
+    tipo_Usuario : Tipo_Usuario,
+    activo : boolean,
+    foto : string,
+    cronicas : Cronica[],
+    hojas_Personaje : Hoja_Personaje[]
+}
+
+
+export enum Tipo_Usuario {
+    Dungeon_Master = 0,
+    Jugador = 1
+}
+
+export interface Cronica{
+    id? : number,
+    nombre_Cronica : string,
+    pais_Cronica : string,
+    fecha_Cronica : string,
+    dungeon_MasterId : number
+}
+
+export interface Hoja_Personaje{
+    id? : number,
+    nombre : string,
+    ambicion : string,
+    generacion : number,
+    concepto : string,
+    sire : string,
+    desire : string,
+    titulo : string,
+    tipo_DepredadorId : number,
+    cronicaId : number,
+    jugadorId : number,
+    tipo_VampiroId : number
+}

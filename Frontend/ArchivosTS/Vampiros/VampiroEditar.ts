@@ -37,7 +37,7 @@ async function mostrarDisciplinas(){
         });
 
 
-        noSeleccionado = registros.resultado.filter((itemA : Disciplina) => {
+        noSeleccionado = registros.filter((itemA : Disciplina) => {
             return !Seleccionado.some((item : Disciplina) => item.id === itemA.id);
         });
 
