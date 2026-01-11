@@ -1,5 +1,6 @@
 ﻿using HojasPersonaje.DTOs;
 using HojasPersonaje.Entidades;
+using HojasPersonaje.Helpers;
 using Microsoft.AspNetCore.Identity;
 
 namespace HojasPersonaje.Repositorio.Interfaces
@@ -13,5 +14,7 @@ namespace HojasPersonaje.Repositorio.Interfaces
         Task<bool> IsUserInRoleAsync(string user, string roleName);
         Task<SignInResult> LoginAsync(LoginDTO model);
         Task LogoutAsync();
+        Task<ActionResponse<IEnumerable<Usuario>>> listarUsuarios(bool activo);
+        Task<ActionResponse<Usuario>> modificarUsuarioActivo(string id, bool activar);
     }
 }

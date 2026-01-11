@@ -2,6 +2,7 @@
 using HojasPersonaje.Data;
 using HojasPersonaje.DTOs;
 using HojasPersonaje.Entidades;
+using HojasPersonaje.Helpers;
 using HojasPersonaje.Repositorio.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -71,6 +72,65 @@ namespace HojasPersonaje.Repositorio.Implementaciones
             }
 
             return await _userManager.IsInRoleAsync(userFind, roleName);
+        }
+
+        public async Task<ActionResponse<IEnumerable<Usuario>>> listarUsuarios(bool activo)
+        {
+            try
+            {
+                return new ActionResponse<IEnumerable<Usuario>>
+                {
+                    Exitoso = true,
+                    Mensaje = "Lista de usuarios obtenida exitosamente.",
+                    Resultado = await _contexto.Users
+                                                    .Include(u => u.Cronicas)
+                                                    .Include(u => u.Hojas_Personaje)
+                                                    .Where(a => a.Activo == activo)
+                                                    .ToListAsync()
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ActionResponse<IEnumerable<Usuario>>
+                {
+                    Exitoso = false,
+                    Mensaje = ex.Message
+                };
+            }
+        }
+
+        public async Task<ActionResponse<Usuario>> modificarUsuarioActivo(string id, bool activar)
+        {
+            try
+            {
+                var usuario = await _contexto.Users.FindAsync(id);
+                if (usuario == null)
+                {
+                    return new ActionResponse<Usuario>
+                    {
+                        Exitoso = false,
+                        Mensaje = "Usuario no encontrado."
+                    };
+                }
+
+                usuario.Activo = activar;
+                _contexto.Users.Update(usuario);
+                await _contexto.SaveChangesAsync();
+                return new ActionResponse<Usuario>
+                {
+                    Exitoso = true,
+                    Mensaje = "Estado del usuario modificado exitosamente.",
+                    Resultado = usuario
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ActionResponse<Usuario>
+                {
+                    Exitoso = false,
+                    Mensaje = ex.Message
+                };
+            }
         }
     }
 }

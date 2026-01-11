@@ -1,6 +1,9 @@
 ﻿using HojasPersonaje.DTOs;
 using HojasPersonaje.Entidades;
+using HojasPersonaje.Repositorio.Implementaciones;
 using HojasPersonaje.Repositorio.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -73,6 +76,42 @@ namespace HojasPersonaje.Controllers
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expiracion = expiration
             };
+        }
+
+        [HttpGet("listarUsuarios/{activo}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> listarUsuarios(bool activo)
+        {
+            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+            if (!(await _usuarios.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
+            {
+                return Forbid();
+            }
+
+            var respuesta = await _usuarios.listarUsuarios(activo);
+            if (respuesta.Exitoso)
+            {
+                return Ok(respuesta.Resultado);
+            }
+            return BadRequest(respuesta.Mensaje);
+        }
+
+        [HttpPut]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> modificarUsuarioActivo([FromBody] UsuarioPutDTO usuarioPutDTO)
+        {
+            var usuario = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (!(await _usuarios.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
+            {
+                return Forbid();
+            }
+
+            var respuesta = await _usuarios.modificarUsuarioActivo(usuarioPutDTO.Usuario!, usuarioPutDTO.Activo);
+            if (respuesta.Exitoso)
+            {
+                return Ok(respuesta.Resultado);
+            }
+            return BadRequest(respuesta.Mensaje);
         }
     }
 }
