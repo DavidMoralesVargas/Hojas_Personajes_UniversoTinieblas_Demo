@@ -59,7 +59,7 @@ namespace HojasPersonaje.Controllers
                 new(ClaimTypes.Name, usuario.Email!),
                 new(ClaimTypes.Role, usuario.Tipo_Usuario.ToString()),
                 new("Nombre_Usuario", usuario.Nombre_Usuario ?? ""),
-                new("sub", usuario.Email!)
+                new(ClaimTypes.NameIdentifier, usuario.Email!)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwtKey"]!));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

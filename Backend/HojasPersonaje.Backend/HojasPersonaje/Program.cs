@@ -4,8 +4,10 @@ using HojasPersonaje.Entidades;
 using HojasPersonaje.Entidades.ValidacionesDatos;
 using HojasPersonaje.Repositorio.Implementaciones;
 using HojasPersonaje.Repositorio.Interfaces;
+using HojasPersonaje.Signal;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
@@ -20,7 +22,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddEndpointsApiExplorer();     
-builder.Services.AddSwaggerGen();           
+builder.Services.AddSwaggerGen();
+
 
 //Inyecciones de los validadores
 builder.Services.AddValidatorsFromAssemblyContaining<Atributo_Hoja_PersonajeValidator>();
@@ -53,6 +56,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<WeaponValidator>();
 //Inyección de la clase contexto
 builder.Services.AddDbContext<ClaseContexto>(x => x.UseSqlServer("name=DockerConnection"));
 builder.Services.AddTransient<SeedDb>();
+builder.Services.AddSignalR();
 
 
 //Inyecciones de implementaciones e interfaces
@@ -98,17 +102,53 @@ builder.Services.AddIdentity<Usuario, IdentityRole>(x =>
 .AddEntityFrameworkStores<ClaseContexto>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
-{
-    ValidateIssuer = false,
-    ValidateAudience = false,
-    ValidateLifetime = true,
-    ValidateIssuerSigningKey = true,
-    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)),
-    ClockSkew = TimeSpan.Zero
-});
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//.AddJwtBearer(x => x.TokenValidationParameters = new TokenValidationParameters
+//{
+//    ValidateIssuer = false,
+//    ValidateAudience = false,
+//    ValidateLifetime = true,
+//    ValidateIssuerSigningKey = true,
+//    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)),
+//    ClockSkew = TimeSpan.Zero
+//});
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["jwtKey"]!)
+        ),
+        ClockSkew = TimeSpan.Zero
+    };
+
+    //Se añadió nuevo
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+
+
+            var path = context.HttpContext.Request.Path;
+
+            if (!string.IsNullOrEmpty(accessToken) &&
+                path.StartsWithSegments("/chat"))
+            {
+
+                context.Token = accessToken;
+            }
+
+            return Task.CompletedTask;
+        }
+    };
+}); //Después de SignalR
 
 
 var app = builder.Build();
@@ -144,6 +184,8 @@ if (app.Environment.IsDevelopment())     //Esto es un condicional para indicar q
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapHub<ClaseHub>("/chat");
 
 app.MapControllers();
 

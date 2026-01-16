@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { elArchivoExiste, verificarVampiroMuestra } from "./buscarFotos.js";
 let parametro = new URLSearchParams(window.location.search);
 let tipoVampiro = parametro.get("tipo");
+let connection;
 $(document).ready(function () {
     return __awaiter(this, void 0, void 0, function* () {
         $("#pagina_siguiente").prop("href", `/Frontend/Vistas/HojasDePersonaje/Vampiro/biografiaM.html?tipo=${tipoVampiro}`);
@@ -25,5 +26,21 @@ $(document).ready(function () {
                 });
             }
         }
+        // configuracionSignalr();
     });
 });
+// function configuracionSignalr(): void {
+//     console.log(localStorage.getItem("token"))
+//     connection = new signalR.HubConnectionBuilder()
+//         .withUrl("https://localhost:7118/chat", {
+//             accessTokenFactory: () => localStorage.getItem("token")
+//         })
+//         .withAutomaticReconnect()
+//         .build();
+//     connection.on("EnviarMensaje", (mensaje: string) => {
+//         console.log(mensaje);
+//     });
+//     connection.start()
+//         .then(() => console.log("Conectado a SignalR"))
+//         .catch((err:any) => console.error("Error SignalR:", err));
+// }
