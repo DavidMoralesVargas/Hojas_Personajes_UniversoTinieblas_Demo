@@ -39,6 +39,28 @@ namespace HojasPersonaje.Controllers
             return BadRequest(resultado.Errors.FirstOrDefault());
         }
 
+
+        [HttpGet("verificarUsuario")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> VerificarUsuarioAsync()
+        {
+            var email = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+            var usuario = await _usuarios.GetUserAsync(email!);
+            if (usuario == null)
+            {
+                return Ok(null);
+            }
+
+            UsuarioEncontradoDTO usuarioEncontrado = new UsuarioEncontradoDTO()
+            {
+                UsuarioId = usuario.Id,
+                NombreUsuario = usuario.Nombre_Usuario!,
+            };
+
+            return Ok(usuarioEncontrado);
+        }
+
+
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginDTO modelo)
         {

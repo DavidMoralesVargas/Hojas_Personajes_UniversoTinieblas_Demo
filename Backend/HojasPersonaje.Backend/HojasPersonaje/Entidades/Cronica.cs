@@ -6,6 +6,7 @@
         public string? Nombre_Cronica { get; set; }
         public string? Pais_Cronica { get; set; }
         public DateTime Fecha_Cronica { get; set; }
+        public bool Finalizado { get; set; }
 
         public Usuario? Dungeon_Master { get; set; }
         public string? Dungeon_MasterId { get; set; }
