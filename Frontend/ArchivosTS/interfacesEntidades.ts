@@ -57,7 +57,9 @@ export interface Cronica{
     nombre_Cronica : string,
     pais_Cronica : string,
     fecha_Cronica : string,
+    finalizado : boolean,
     dungeon_MasterId : number
+    dungeon_Master : Usuario
 }
 
 export interface Hoja_Personaje{
@@ -74,3 +76,12 @@ export interface Hoja_Personaje{
     jugadorId : number,
     tipo_VampiroId : number
 }
+
+
+export interface UsuarioEncontradoDTO{
+    usuarioId : string,
+    nombreUsuario : string
+}
+
+
+

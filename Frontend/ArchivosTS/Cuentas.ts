@@ -1,3 +1,5 @@
+import { Usuario } from "./interfacesEntidades";
+
 const endpoint : string = "https://localhost:7118";
 
 
@@ -61,6 +63,21 @@ export function verificarToken() : string | undefined{
         }
         return rol;
     }
+}
+
+
+export async function verificarUsuarioExistente() : Promise<any>{
+    
+    let respuesta : boolean = await $.ajax({
+        url: `${endpoint}/api/Usuarios/verificarUsuario`,
+        method: "GET", 
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        dataType: "json"
+    });
+
+    return respuesta;
 }
 
 

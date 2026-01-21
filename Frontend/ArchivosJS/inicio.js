@@ -8,12 +8,213 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const endpoint = "https://localhost:7118";
-import { verificarToken, TipoUsuario } from "./Cuentas.js";
+import { verificarToken, TipoUsuario, verificarUsuarioExistente } from "./Cuentas.js";
 import { mostrarClanes, realizarFiltro, tiposVampiros } from "./Vampiro.js";
+let idEdicion;
+let nombreEdicion;
+let usuarioEncontrado;
 //Evento para cuando la página esté cargada
 $(document).ready(function () {
-    mostrarClanes(); //Se llama al método para mostrar los clanes de vampiro en el menú desplegable
-    let rol = verificarToken(); //Se verifica si hay un token en el localStorage
+    return __awaiter(this, void 0, void 0, function* () {
+        configuracionSignalr();
+        mostrarClanes(); //Se llama al método para mostrar los clanes de vampiro en el menú desplegable
+        let rol = verificarToken(); //Se verifica si hay un token en el localStorage
+        if (rol == "Dungeon_Master") {
+            $(".btn_crear").prop("hidden", false);
+        }
+        usuarioEncontrado = yield verificarUsuarioExistente();
+        yield listarCronicas();
+    });
+});
+function buscarHojaPersonajePorCronica(idCronica, idUsuario) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let hojaPersonaje = yield $.ajax({
+                url: `${endpoint}/api/HojasPersonajes/buscarPorCronicaId?cronicaId=${idCronica}&idUsuario=${idUsuario}`,
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                dataType: "json"
+            });
+            return hojaPersonaje;
+        }
+        catch (error) {
+            console.error(error.responseText);
+        }
+    });
+}
+function armarCronicaHTML(cronica) {
+    return __awaiter(this, void 0, void 0, function* () {
+        var _a;
+        let elemento;
+        elemento =
+            `
+    <div style="margin-left: 2%;" class="mb-5 cronica">
+                <div style="
+                        max-width:240px;
+                        padding:1rem;
+                        background:#ffffff;
+                        border-radius:8px;
+                        box-shadow:0 4px 10px rgba(0,0,0,0.08);
+                "
+                    class="contenedor">
+                    <div class="d-flex">
+                        <h3 class="mb-3 titulo_cronica" style="font-size:1.1rem;">
+                        ${cronica.nombre_Cronica}
+                        </h3>
+                        ${verificarToken() == "Dungeon_Master" ? `
+                        <button style="margin-left: auto;" class="btn btn-warning editarCronica" data-id="${cronica.id}">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                        ` : ``}
+
+                    </div>
+                    
+                    <p style="font-size:1.1rem;">País: ${cronica.pais_Cronica}</p>
+                    <p style="font-size:1.1rem;">Creador crónica: ${cronica.dungeon_Master.nombre_Usuario}</p>
+                    <input hidden value=${cronica.id} class="idCronica">
+                    <input hidden value=${cronica.finalizado} class="finalizadoCronica">
+                    <input hidden value=${cronica.pais_Cronica} class="paisCronica">
+                    
+
+                    ${(yield buscarHojaPersonajePorCronica(cronica.id || 0, (usuarioEncontrado === null || usuarioEncontrado === void 0 ? void 0 : usuarioEncontrado.usuarioId) || "")) === undefined ?
+                `
+                        <a class="btn btn-primary btn-sm w-100 btn_crear_hoja">
+                            Crear Hoja de Personaje
+                        </a>
+                        `
+                :
+                    `
+                        <a class="btn btn-success btn-sm w-100 btn_ingresar_cronica">
+                            Ingresar
+                        </a>
+                        `}
+            </div>
+        </div>
+    `;
+        const contenedor = document.createElement("div");
+        contenedor.innerHTML = elemento;
+        (_a = document.querySelector(".lista_cronica")) === null || _a === void 0 ? void 0 : _a.appendChild(contenedor);
+    });
+}
+function listarCronicas() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let resultados = yield $.ajax({
+            url: `${endpoint}/api/Cronicas`,
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            dataType: "json"
+        });
+        if (resultados.length == 0) {
+            return;
+        }
+        resultados.forEach((cronica) => __awaiter(this, void 0, void 0, function* () {
+            yield armarCronicaHTML(cronica);
+        }));
+    });
+}
+//Evento para volver a la versión antes de edición de una crónica
+$(".lista_cronica").on("click", ".cancelar_edicion", function (e) {
+    const input = e.target.closest(".d-flex").querySelector(".mi-input");
+    const boton = e.target.closest(".d-flex").querySelector(".cancelar_edicion");
+    const nuevoElemento = document.createElement("h3");
+    nuevoElemento.className = "mb-3 titulo_cronica";
+    nuevoElemento.style.fontSize = "1.1rem";
+    nuevoElemento.textContent = nombreEdicion;
+    boton.className = "btn btn-warning editarCronica";
+    boton.dataset.id = idEdicion;
+    boton.querySelector("i").className = "bi bi-pencil-square";
+    input.replaceWith(nuevoElemento);
+});
+//Evento para completar la edición de una crónica
+$(".lista_cronica").on("click", ".guardar_edicion", function (e) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const contenedor = e.target.closest(".cronica");
+        try {
+            yield $.ajax({
+                url: `${endpoint}/api/Cronicas`,
+                method: "PUT",
+                contentType: "application/json",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                data: JSON.stringify({
+                    "id": String(contenedor.querySelector(".idCronica").value),
+                    "nombre_Cronica": String(contenedor.querySelector(".mi-input").value),
+                    "pais_Cronica": String(contenedor.querySelector(".paisCronica").value),
+                    "finalizado": String(contenedor.querySelector(".finalizadoCronica").value) == "true"
+                }),
+                dataType: "json"
+            });
+            Swal.fire({
+                icon: "success",
+                title: "¡Éxito!",
+                text: "Cambios en Crónica realizado con éxito",
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3085d6',
+                toast: true,
+                position: "bottom-start",
+                timer: 3000
+            });
+        }
+        catch (error) {
+            Swal.fire({
+                icon: "warning",
+                title: "!Algo mal ocurrió!",
+                text: `${error.responseText}`,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#ff0000ff',
+                toast: true,
+                position: "bottom-start",
+                timer: 3000
+            });
+        }
+        const input = e.target.closest(".d-flex").querySelector(".mi-input");
+        const boton = e.target.closest(".d-flex").querySelector(".guardar_edicion");
+        const nuevoElemento = document.createElement("h3");
+        nuevoElemento.className = "mb-3 titulo_cronica";
+        nuevoElemento.style.fontSize = "1.1rem";
+        nuevoElemento.textContent = input.value;
+        boton.className = "btn btn-warning editarCronica";
+        boton.dataset.id = idEdicion;
+        boton.querySelector("i").className = "bi bi-pencil-square";
+        input.replaceWith(nuevoElemento);
+    });
+});
+//Evento para cambiar el titulo de la cronica por un input
+$(".lista_cronica").on("click", ".editarCronica", function (e) {
+    idEdicion = e.target.dataset.id;
+    const titulo = e.target.closest(".contenedor").querySelector(".titulo_cronica");
+    const nombreTitulo = titulo.textContent.trim();
+    const inputNuevo = document.createElement("input");
+    inputNuevo.type = "text";
+    inputNuevo.className = "form-control mi-input";
+    inputNuevo.value = nombreTitulo;
+    const boton = e.target.closest(".editarCronica");
+    boton.className = "btn btn-danger cancelar_edicion";
+    const iconoBoton = boton.querySelector("i");
+    iconoBoton.className = "bi bi-x-octagon-fill";
+    nombreEdicion = nombreTitulo;
+    titulo.replaceWith(inputNuevo);
+});
+//Evento para cambiar de estilo el botón de guardar o cancelar.
+$(".lista_cronica").on("input", ".mi-input", function (e) {
+    let nuevoTexto = String(e.target.value);
+    let boton;
+    if (nuevoTexto == nombreEdicion) {
+        boton = e.target.closest(".d-flex").querySelector(".guardar_edicion");
+        boton.className = "btn btn-danger cancelar_edicion";
+        const iconoBoton = boton.querySelector("i");
+        iconoBoton.className = "bi bi-x-octagon-fill";
+        return;
+    }
+    boton = e.target.closest(".d-flex").querySelector(".cancelar_edicion");
+    boton.className = "btn btn-primary guardar_edicion";
+    const iconoBoton = boton.querySelector("i");
+    iconoBoton.className = "bi bi-bookmark";
 });
 //Evento que toma el valor del input de búsqueda y llama a la función para filtrar los clanes
 $(".input_clanes").on("input", function () {
@@ -37,6 +238,83 @@ $("#cerrar-sesion").on("click", function () {
 //Método para añadir el token al localStorage
 function AñadirTokenLocalStorage(token) {
     localStorage.setItem("token", token);
+}
+$(".enviar_cronica").on("click", function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            $.ajax({
+                url: `${endpoint}/api/Cronicas`,
+                method: "POST",
+                contentType: "application/json",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                data: JSON.stringify({
+                    "nombre_Cronica": String($("#nombre_cronica").val()),
+                    "pais_Cronica": String($("#pais_cronica").val()),
+                }),
+                dataType: "json"
+            });
+        }
+        catch (error) {
+            console.error(error.responseText);
+            Swal.fire({
+                icon: "error",
+                title: "¡Falló!",
+                text: `Ocurrió un error`,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#ff0022',
+                toast: true,
+                position: "bottom-start",
+                timer: 3000
+            });
+        }
+        const modalElement = document.getElementById('ModalCrearCronica');
+        if (modalElement) {
+            const bootstrapAny = window.bootstrap;
+            const modal = bootstrapAny.Modal.getInstance(modalElement) ||
+                new bootstrapAny.Modal(modalElement);
+            modal.hide();
+        }
+    });
+});
+function buscarCronica(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let cronica = yield $.ajax({
+                url: `${endpoint}/api/Cronicas/${id}`,
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                dataType: "json"
+            });
+            yield armarCronicaHTML(cronica);
+        }
+        catch (error) {
+            console.error(error.responseText);
+        }
+    });
+}
+$("#ModalCrearCronica").on("hidden.bs.modal", function () {
+    $("#nombre_cronica").val("");
+    $("#pais_cronica").val("");
+});
+function configuracionSignalr() {
+    console.log(localStorage.getItem("token"));
+    let connection = new signalR.HubConnectionBuilder()
+        .withUrl("https://localhost:7118/chat", {
+        accessTokenFactory: () => localStorage.getItem("token")
+    })
+        .withAutomaticReconnect()
+        .build();
+    connection.on("NuevaCronicaCreada", (id) => __awaiter(this, void 0, void 0, function* () {
+        console.log(id);
+        yield buscarCronica(id);
+    }));
+    connection.start()
+        .then(() => console.log("Conectado a SignalR"))
+        .catch((err) => console.error("Error SignalR:", err));
 }
 //Formulario para cuando envíen el registro de un nuevo usuario
 $("#formulario_registro").on("submit", function (event) {
@@ -105,22 +383,16 @@ $("#formulario_login").on("submit", function (event) {
             window.location.reload();
         }
         catch (error) {
-            // Casteamos el error a JQuery.jqXHR para tener autocompletado
-            const err = error;
-            console.error("Código de estado:", err.status); // Ejemplo: 400
-            if (err.status === 400) {
-                // El BadRequest de .NET suele venir en 'responseJSON'
-                // Lo tipamos como 'any' o un record para leer los mensajes
-                const detallesError = err.responseJSON;
-                console.log("Mensaje exacto del servidor:", detallesError);
-                // Si quieres acceder a los errores de validación específicos de ASP.NET Core:
-                if (detallesError && detallesError.errors) {
-                    console.table(detallesError.errors);
-                }
-            }
-            else {
-                console.error("Error no controlado:", err.responseText);
-            }
+            Swal.fire({
+                icon: "error",
+                title: "¡Error!",
+                text: "Error al iniciar sesión. Verifica tus credenciales e inténtalo de nuevo.",
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#ff002b',
+                toast: true,
+                position: "bottom-start",
+                timer: 3000
+            });
         }
     });
 });
