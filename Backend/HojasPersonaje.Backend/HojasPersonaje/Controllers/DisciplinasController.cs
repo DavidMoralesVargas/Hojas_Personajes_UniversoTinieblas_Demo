@@ -23,6 +23,20 @@ namespace HojasPersonaje.Controllers
             _usuarioRepositorio = usuariosRepositorio;
         }
 
+
+        [HttpGet("combo")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Combo()
+        {
+            var resultado = await _disciplinasRepositorio.ComboAsync();
+            if (resultado.Exitoso)
+            {
+                return Ok(resultado.Resultado);
+            }
+            return BadRequest(resultado.Mensaje);
+        }
+
+
         [HttpPost("all")]
         public async Task<IActionResult> Agregar([FromBody] DisciplinaDTO entidad)
         {

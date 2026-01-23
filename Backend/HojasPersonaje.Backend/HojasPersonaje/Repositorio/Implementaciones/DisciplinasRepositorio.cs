@@ -5,6 +5,7 @@ using HojasPersonaje.Entidades;
 using HojasPersonaje.Helpers;
 using HojasPersonaje.Repositorio.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 namespace HojasPersonaje.Repositorio.Implementaciones
 {
@@ -149,6 +150,27 @@ namespace HojasPersonaje.Repositorio.Implementaciones
                     Mensaje = ex.Message
                 };
             }
+        }
+
+        public async Task<ActionResponse<IEnumerable<Disciplina>>> ComboAsync()
+        {
+            try
+            {
+                return new ActionResponse<IEnumerable<Disciplina>>
+                {
+                    Exitoso = true,
+                    Mensaje = "Combo de disciplinas",
+                    Resultado = await _contexto.Disciplinas.ToListAsync()
+                };
+            }
+            catch(Exception ex)
+            {
+                return new ActionResponse<IEnumerable<Disciplina>>
+                {
+                    Mensaje = ex.Message,
+                    Exitoso = false
+                };
+            };
         }
     }
 }

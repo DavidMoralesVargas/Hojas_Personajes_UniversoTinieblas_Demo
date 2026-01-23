@@ -11,5 +11,6 @@ namespace HojasPersonaje.Repositorio.Interfaces
         Task<ActionResponse<Disciplina>> ActualizarAsync(Disciplina entidad);
         Task<ActionResponse<bool>> EliminarAsync(int id);
         Task<ActionResponse<Disciplina>> ObtenerPorIdAsync(int id);
+        Task<ActionResponse<IEnumerable<Disciplina>>> ComboAsync();
     }
 }
