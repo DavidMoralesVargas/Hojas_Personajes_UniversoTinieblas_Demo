@@ -6,6 +6,11 @@ export interface Vampiro{
     disciplina_Vampiro : disciplina_Vampiro[];
 }
 
+export interface Tipo_Depredador{
+    id? : number,
+    nombre : string
+}
+
 export interface Clan_Bane{
     id : number,
     bane : string,
@@ -82,6 +87,8 @@ export interface UsuarioEncontradoDTO{
     usuarioId : string,
     nombreUsuario : string
 }
+
+
 
 
 

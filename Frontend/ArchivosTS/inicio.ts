@@ -2,7 +2,7 @@ const endpoint : string = "https://localhost:7118";
 
 import { verificarToken, TipoUsuario, verificarUsuarioExistente } from "./Cuentas.js";
 import { mostrarClanes, realizarFiltro, tiposVampiros } from "./Vampiro.js";
-import { Cronica, Hoja_Personaje, Usuario, UsuarioEncontradoDTO } from "./interfacesEntidades.js";
+import { Cronica, Hoja_Personaje, UsuarioEncontradoDTO } from "./interfacesEntidades.js";
 
 declare const signalR: any;
 declare var Swal: any;

@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { elArchivoExiste, verificarVampiroMuestra } from "./buscarFotos.js";
+const endpoint = "https://localhost:7118";
 let parametro = new URLSearchParams(window.location.search);
 let tipoVampiro = parametro.get("tipo");
 let connection;
@@ -26,21 +27,31 @@ $(document).ready(function () {
                 });
             }
         }
-        // configuracionSignalr();
+        yield llenarDisciplinas();
     });
 });
-// function configuracionSignalr(): void {
-//     console.log(localStorage.getItem("token"))
-//     connection = new signalR.HubConnectionBuilder()
-//         .withUrl("https://localhost:7118/chat", {
-//             accessTokenFactory: () => localStorage.getItem("token")
-//         })
-//         .withAutomaticReconnect()
-//         .build();
-//     connection.on("EnviarMensaje", (mensaje: string) => {
-//         console.log(mensaje);
-//     });
-//     connection.start()
-//         .then(() => console.log("Conectado a SignalR"))
-//         .catch((err:any) => console.error("Error SignalR:", err));
-// }
+function llenarDisciplinas() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let resultado = yield $.ajax({
+                type: "GET",
+                url: `${endpoint}/api/Disciplinas/combo`,
+                dataType: "json"
+            });
+            console.log(resultado);
+            let selects = document.querySelectorAll("select[class*='disciplina']");
+            console.log(selects);
+            selects.forEach((select) => {
+                resultado.forEach((disciplina) => {
+                    let option = document.createElement("option");
+                    option.value = disciplina.id.toString();
+                    option.text = disciplina.nombre_Disciplina;
+                    select.appendChild(option);
+                });
+            });
+        }
+        catch (error) {
+            console.error(error.message);
+        }
+    });
+}

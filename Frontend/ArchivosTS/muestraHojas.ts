@@ -1,4 +1,8 @@
 import { elArchivoExiste, verificarVampiroMuestra } from "./buscarFotos.js";
+import { Disciplina } from "./interfacesEntidades.js";
+
+const endpoint : string = "https://localhost:7118";
+
 
 let parametro = new URLSearchParams(window.location.search);
 let tipoVampiro : string | null = parametro.get("tipo");
@@ -27,27 +31,32 @@ $(document).ready(async function () {
         }
     }
 
-    // configuracionSignalr();
+    await llenarDisciplinas();
 
 });
 
+async function llenarDisciplinas(){
+    try{
+        let resultado : Disciplina[] = await $.ajax({
+            type: "GET",
+            url: `${endpoint}/api/Disciplinas/combo`,
+            dataType: "json"
+        });
+        console.log(resultado);
 
+        let selects = document.querySelectorAll("select[class*='disciplina']");
+        console.log(selects);
+        selects.forEach((select) => {
+            resultado.forEach((disciplina) => {
+                let option = document.createElement("option");
+                option.value = disciplina.id.toString();
+                option.text = disciplina.nombre_Disciplina;
+                select.appendChild(option);
+            });
+        });
+    }
+    catch(error:any){
+        console.error(error.message);
+    }
+}
 
-// function configuracionSignalr(): void {
-//     console.log(localStorage.getItem("token"))
-//     connection = new signalR.HubConnectionBuilder()
-//         .withUrl("https://localhost:7118/chat", {
-//             accessTokenFactory: () => localStorage.getItem("token")
-//         })
-//         .withAutomaticReconnect()
-//         .build();
-
-//     connection.on("EnviarMensaje", (mensaje: string) => {
-//         console.log(mensaje);
-
-//     });
-
-//     connection.start()
-//         .then(() => console.log("Conectado a SignalR"))
-//         .catch((err:any) => console.error("Error SignalR:", err));
-// }
