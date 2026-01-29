@@ -1,1 +1,1 @@
-# Hojas_De_Personaje_UniversoDeTinieblas
+# Versión DEMO para Hojas de Personajes. Juego de Rol Vampiro La Mascarada
