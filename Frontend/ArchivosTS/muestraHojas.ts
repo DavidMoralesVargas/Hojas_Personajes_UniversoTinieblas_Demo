@@ -7,9 +7,6 @@ const endpoint : string = "https://localhost:7118";
 let parametro = new URLSearchParams(window.location.search);
 let tipoVampiro : string | null = parametro.get("tipo");
 
-declare const signalR: any;
-
-let connection: any;
 
 $(document).ready(async function () {
 

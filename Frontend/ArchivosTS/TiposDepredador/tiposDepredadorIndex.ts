@@ -41,6 +41,9 @@ async function llenarTabla(){
         let respuesta = await $.ajax({
             type: "GET",
             url: `${endpoint}/api/Tipos_Depredador`,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
             dataType: "json"
         });
 
@@ -103,7 +106,10 @@ async function BuscarTipoDepredadorPorID(id: number){
         let dato = await $.ajax({
             type: "GET",
             url: `${endpoint}/api/Tipos_Depredador/${id}`,
-            dataType: "json"
+            dataType: "json",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
         });
         tipoDepredador = dato.resultado;
         console.log(tipoDepredador);
@@ -125,7 +131,10 @@ async function guardarCambios(accion: string) {
                 id: crear ? 0 : idEditar,
                 nombre: String($("#nombre_tipo_depredador").val())
             }),
-            contentType: "application/json"
+            contentType: "application/json",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
         });
 
         const modalElement = document.getElementById('crearEditarModal') as any;
@@ -201,7 +210,10 @@ $(document).on("click", ".btn-danger", async function(){
     await $.ajax({
         type: "DELETE",
         url: `${endpoint}/api/Tipos_Depredador/${idEliminar}`,
-        dataType: "json"
+        dataType: "json",
+        headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
     });
 
     Swal.fire({

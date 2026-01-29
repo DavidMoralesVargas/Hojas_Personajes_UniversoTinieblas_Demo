@@ -47,12 +47,6 @@ namespace HojasPersonaje.Controllers
         [HttpGet("{id}")]
         public override async Task<IActionResult> ObtenerPorId(int id)
         {
-            var usuario = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
-            if (!(await _usuarioRepositorio.IsUserInRoleAsync(usuario!, Tipo_Usuario.Dungeon_Master.ToString())))
-            {
-                return Forbid();
-            }
-
             var resultado = await _vampirosRepositorio.ObtenerPorIdAsync(id);
             if (resultado.Exitoso)
             {

@@ -11,7 +11,6 @@ import { elArchivoExiste, verificarVampiroMuestra } from "./buscarFotos.js";
 const endpoint = "https://localhost:7118";
 let parametro = new URLSearchParams(window.location.search);
 let tipoVampiro = parametro.get("tipo");
-let connection;
 $(document).ready(function () {
     return __awaiter(this, void 0, void 0, function* () {
         $("#pagina_siguiente").prop("href", `/Frontend/Vistas/HojasDePersonaje/Vampiro/biografiaM.html?tipo=${tipoVampiro}`);

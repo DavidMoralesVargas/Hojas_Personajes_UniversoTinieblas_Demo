@@ -80,9 +80,9 @@ function armarCronicaHTML(cronica) {
 
                     ${(yield buscarHojaPersonajePorCronica(cronica.id || 0, (usuarioEncontrado === null || usuarioEncontrado === void 0 ? void 0 : usuarioEncontrado.usuarioId) || "")) === undefined ?
                 `
-                        <a class="btn btn-primary btn-sm w-100 btn_crear_hoja">
+                        <button data-bs-toggle="modal" data-bs-target="#CrearHojaModal" class="btn btn-primary btn-sm w-100 btn_crear_hoja">
                             Crear Hoja de Personaje
-                        </a>
+                        </button>
                         `
                 :
                     `
@@ -395,4 +395,39 @@ $("#formulario_login").on("submit", function (event) {
             });
         }
     });
+});
+//Evento para llenar select para seleccionar un vampiro para la hoja de personaje
+$("#CrearHojaModal").on("shown.bs.modal", function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        const modal = $(this);
+        let respuesta = yield $.ajax({
+            url: `${endpoint}/api/Vampiros/combo`,
+            method: "GET",
+            dataType: "json"
+        });
+        let clanesVampiro = respuesta.resultado;
+        let options = "";
+        options = clanesVampiro.map((clan) => {
+            return `<option value="${clan.id}">${clan.nombre}</option>`;
+        }).join("");
+        modal.find("#seleccion_clanes").append(options);
+    });
+});
+//Evento para ir a crear el personaje una vez seleccionado el clan
+$("#ir_a_crear").on("click", function () {
+    const modal = $(this).closest(".modal");
+    const select = modal.find("#seleccion_clanes");
+    const valor = select.val();
+    if (valor == "") {
+        Swal.fire({
+            icon: "warning",
+            title: "¡Atención!",
+            text: "Debes seleccionar un clan para continuar",
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#ffcc00',
+            timer: 3000
+        });
+        return;
+    }
+    window.location.href = `../Vistas/HojasDePersonaje/Vampiro/hoja_personaje.html?clanId=${valor}`;
 });

@@ -14,14 +14,17 @@
             <a href="../../index.html" class="btn btn-success mt-3 ms-3 btn-sm"><i class="bi bi-skip-backward"></i> Atrás</a>
         </div>
         <div class="col-auto">
-            <a href="Biografia.html" class="btn btn-info mt-3 me-3 btn-sm">Siguiente página <i class="bi bi-skip-forward"></i> </a>    
+            <button id="guardar_hoja" class="btn btn-primary mt-3 ms-3 btn-sm">Guardar</button>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-info mt-3 me-3 btn-sm" id="btn_siguiente">Siguiente página <i class="bi bi-skip-forward"></i> </a>    
         </div>
     </div>
 
     <div class="contenedor-vampirico">
             <div class="reja-superior"></div>
     <!-- <h1 id="nombre_clan" class="mb-3">MALKAVIAN</h1> -->
-    <img id="titulo_vampiro" src="..../../../../../Images/SinFotoVampiro.png" alt="Logo Vampiro" class="logo-vampiro mb-3">
+    <img id="titulo_vampiro" src="..../../../../../Images/Titulos_Vampiros/TituloGenerico.png" alt="Logo Vampiro" class="logo-vampiro mb-3">
 
     <div class="mb-3">
         <div class="row mb-3">
@@ -61,7 +64,9 @@
             </div>
             <div class="col-md-4 d-md-flex align-items-center mb-3 mb-md-0">
                 <p class="titulos mb-0 me-2 label-width">Depredador</p>
-                <input type="text" class="form-control" />
+                <select type="text" id="tipos_depredador" class="form-control">
+                    <option selected value="" style="text-align: center;">-- Seleccionar --</option>
+                </select>
             </div>
             <div class="col-md-4 d-md-flex align-items-center">
                 <p class="titulos mb-0 me-2 label-width">Título</p>
@@ -86,7 +91,7 @@
                         <div class="d-flex align-items-center mb-3 justify-content-center">
                             <p class="titulos mb-0 me-3 label-width">Fuerza</p>
                             <div class="d-flex gap-2">
-                                <input type="checkbox" class="circle-check" id="fuerza-1">
+                                <input type="checkbox" checked disabled class="circle-check" id="fuerza-1">
                                 <input type="checkbox" class="circle-check" id="fuerza-2">
                                 <input type="checkbox" class="circle-check" id="fuerza-3">
                                 <input type="checkbox" class="circle-check" id="fuerza-4">
@@ -619,10 +624,8 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <div class="d-flex align-items-center">
-                            <select class="form-control me-5">
+                            <select class="form-control me-5" id="disciplina-1">
                                 <option value="" disabled selected>Seleccione la disciplia</option>
-                                <option value="1">Dominación</option>
-                                <option value="2">Obliblión</option>
                             </select>
                             <div class="text-nowrap d-flex gap-1 ms-auto">
                                 <input type="checkbox" class="circle-check" id="tecnologia-1">
@@ -642,10 +645,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <select class="form-control me-5">
+                            <select class="form-control me-5" id="disciplina-2">
                                 <option value="" disabled selected>Seleccione la disciplia</option>
-                                <option value="1">Dominación</option>
-                                <option value="2">Obliblión</option>
                             </select>
                             <div class="text-nowrap d-flex gap-1 ms-auto">
                                 <input type="checkbox" class="circle-check" id="tecnologia-1">
@@ -665,10 +666,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <select class="form-control me-5">
+                            <select class="form-control me-5" id="disciplina-3">
                                 <option value="" disabled selected>Seleccione la disciplia</option>
-                                <option value="1">Dominación</option>
-                                <option value="2">Obliblión</option>
                             </select>
                             <div class="text-nowrap d-flex gap-1 ms-auto">
                                 <input type="checkbox" class="circle-check" id="tecnologia-1">
@@ -688,10 +687,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <select class="form-control me-5">
+                            <select class="form-control me-5" id="disciplina-4">
                                 <option value="" disabled selected>Seleccione la disciplia</option>
-                                <option value="1">Dominación</option>
-                                <option value="2">Obliblión</option>
                             </select>
                             <div class="text-nowrap d-flex gap-1 ms-auto">
                                 <input type="checkbox" class="circle-check" id="tecnologia-1">
@@ -711,10 +708,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <select class="form-control me-5">
+                            <select class="form-control me-5" id="disciplina-5">
                                 <option value="" disabled selected>Seleccione la disciplia</option>
-                                <option value="1">Dominación</option>
-                                <option value="2">Obliblión</option>
                             </select>
                             <div class="text-nowrap d-flex gap-1 ms-auto">
                                 <input type="checkbox" class="circle-check" id="tecnologia-1">
@@ -734,10 +729,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <select class="form-control me-5">
+                            <select class="form-control me-5" id="disciplina-6">
                                 <option value="" disabled selected>Seleccione la disciplia</option>
-                                <option value="1">Dominación</option>
-                                <option value="2">Obliblión</option>
                             </select>
                             <div class="text-nowrap d-flex gap-1 ms-auto">
                                 <input type="checkbox" class="circle-check" id="tecnologia-1">
@@ -924,6 +917,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="../../../ArchivosJS/hoja_personaje.js"></script>
+    <script type="module" src="../../../ArchivosJS/buscarFotos.js"></script>
+    <script type="module" src="../../../ArchivosJS/HojasPersonaje/HojasPersonajeCrear.js"></script>
 </body>
 </html>

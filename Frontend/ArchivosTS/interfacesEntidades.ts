@@ -82,6 +82,11 @@ export interface Hoja_Personaje{
     tipo_VampiroId : number
 }
 
+export interface Tipo_Depredador{
+    id? : number,
+    nombre : string
+}
+
 
 export interface UsuarioEncontradoDTO{
     usuarioId : string,

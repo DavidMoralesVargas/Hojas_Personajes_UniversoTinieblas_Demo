@@ -2,7 +2,7 @@ const endpoint : string = "https://localhost:7118";
 
 import { verificarToken, TipoUsuario, verificarUsuarioExistente } from "./Cuentas.js";
 import { mostrarClanes, realizarFiltro, tiposVampiros } from "./Vampiro.js";
-import { Cronica, Hoja_Personaje, UsuarioEncontradoDTO } from "./interfacesEntidades.js";
+import { Cronica, Hoja_Personaje, UsuarioEncontradoDTO, Vampiro } from "./interfacesEntidades.js";
 
 declare const signalR: any;
 declare var Swal: any;
@@ -81,9 +81,9 @@ async function armarCronicaHTML(cronica : Cronica) : Promise<void>{
 
                     ${await buscarHojaPersonajePorCronica(cronica.id || 0 , usuarioEncontrado?.usuarioId || "") === undefined ? 
                         `
-                        <a class="btn btn-primary btn-sm w-100 btn_crear_hoja">
+                        <button data-bs-toggle="modal" data-bs-target="#CrearHojaModal" class="btn btn-primary btn-sm w-100 btn_crear_hoja">
                             Crear Hoja de Personaje
-                        </a>
+                        </button>
                         ` 
                         : 
                         `
@@ -447,4 +447,49 @@ $("#formulario_login").on("submit", async function (event) {
             timer : 3000
         });
     }
+});
+
+
+
+
+
+//Evento para llenar select para seleccionar un vampiro para la hoja de personaje
+$("#CrearHojaModal").on("shown.bs.modal" ,async function(){
+    const modal = $(this);
+
+    let respuesta = await $.ajax({
+        url: `${endpoint}/api/Vampiros/combo`,
+        method: "GET",
+        dataType: "json"
+    });
+
+    let clanesVampiro : Vampiro[] = respuesta.resultado;
+    let options : string = "";
+
+    options = clanesVampiro.map((clan : Vampiro) => {
+        return `<option value="${clan.id}">${clan.nombre}</option>`;
+    }).join("");
+
+    modal.find("#seleccion_clanes").append(options);
+});
+
+//Evento para ir a crear el personaje una vez seleccionado el clan
+$("#ir_a_crear").on("click", function(){
+    const modal = $(this).closest(".modal");
+    const select = modal.find("#seleccion_clanes");
+    const valor = select.val();
+
+    if(valor == ""){
+        Swal.fire({
+            icon: "warning",
+            title : "¡Atención!",
+            text : "Debes seleccionar un clan para continuar",
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#ffcc00',
+            timer : 3000            
+        });
+        return;
+    }
+
+    window.location.href = `../Vistas/HojasDePersonaje/Vampiro/hoja_personaje.html?clanId=${valor}`;
 });
