@@ -38,9 +38,9 @@ El objetivo principal es **explorar y validar funcionalidades básicas** de lect
 
 Este proyecto no representa un producto final, sino un prototipo funcional orientado a aprendizaje, pruebas técnicas y validación del modelo de datos.
 
-🧪 **Pensado para:**
+**Este proyecto fue pensado para:**
 - Pruebas de concepto
-- Desarrollo académico o personal
+- Desarrollo académico y personal
 - Experimentación con tecnologías backend y frontend
 - Iteración futura hacia una versión más completa
 
