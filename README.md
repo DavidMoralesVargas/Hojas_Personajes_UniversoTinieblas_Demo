@@ -44,3 +44,8 @@ Este proyecto no representa un producto final, sino un prototipo funcional orien
 - Experimentación con tecnologías backend y frontend
 - Iteración futura hacia una versión más completa
 
+
+**NOTA:**
+**Vampiro** La Mascarada y todo el **Mundo de Tinieblas** son marcas registradas de sus respectivos propietarios.
+Este proyecto no tiene fines comerciales, fue desarrollado solo con fines de práctica y aprendizaje profesional y académico.
+
